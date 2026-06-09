@@ -6,131 +6,352 @@
 
 <title>CancerQR Research | EndoCann TumorBoard Navigator</title>
 <style>
-:root {
-  --bg:#f4f8ff; --bg2:#eaf3ff; --ink:#0b1f3a; --muted:#55708f; --soft:#7d91aa;
-  --blue:#0d63c9; --blue2:#0a8fff; --navy:#06315f; --cyan:#0ea5e9; --green:#0f9f6e;
-  --line:#cfe0f5; --line2:#aec9ea; --card:#ffffff; --panel:#f8fbff;
-  --shadow:0 18px 48px rgba(18,64,117,.14); --shadow2:0 10px 30px rgba(13,99,201,.15);
-  --r:24px; --r2:18px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:100px}
-body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;color:var(--ink);background:
-  radial-gradient(circle at 84% -10%, rgba(14,165,233,.20), transparent 32%),
-  radial-gradient(circle at 4% 8%, rgba(13,99,201,.16), transparent 30%),
-  linear-gradient(180deg,#fff 0%, var(--bg) 46%, #eef6ff 100%);
-  line-height:1.55;font-size:16px;padding-bottom:156px;
-}
-a{color:inherit}
-.wrap{max-width:1480px;margin:0 auto;padding:0 18px}
-.topbar{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-.head{max-width:1480px;margin:auto;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo{width:50px;height:50px;border-radius:16px;background:linear-gradient(135deg,var(--navy),var(--blue2));color:#fff;display:grid;place-items:center;font-weight:1000;letter-spacing:-.04em;box-shadow:var(--shadow2)}
-.brand h1{margin:0;font-size:29px;line-height:1;color:var(--navy);font-weight:950;letter-spacing:-.03em}
-.brand p{margin:2px 0 0;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:900}
-.header-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
-.smallbtn{display:inline-flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;border:1px solid var(--line2);background:#fff;border-radius:999px;padding:9px 13px;color:var(--navy);font-weight:900;box-shadow:0 8px 20px rgba(18,64,117,.06)}
-.smallbtn.primary{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border-color:transparent}
+/* ============================================================
+   CancerQR Research — consolidated design system
+   One calm, clinical source of truth. Replaces the previous
+   layered "patch" stylesheets and their !important overrides.
+   Class names are kept verbatim so the existing renderer JS
+   (which injects markup using these classes) keeps working.
+   ============================================================ */
 
-.hero{margin:22px 0 16px;border:1px solid var(--line);background:
- linear-gradient(135deg,rgba(255,255,255,.96),rgba(239,247,255,.92)),
- radial-gradient(circle at 90% 10%,rgba(13,99,201,.16),transparent 24%);
- border-radius:32px;box-shadow:var(--shadow);padding:30px;display:grid;grid-template-columns:1.2fr .8fr;gap:22px;align-items:stretch;overflow:hidden;position:relative}
-.hero:before{content:"";position:absolute;inset:0 0 auto 0;height:7px;background:linear-gradient(90deg,var(--blue),var(--cyan),#77c8ff)}
-.kicker{display:inline-flex;align-items:center;gap:8px;border:1px solid #bdd7f8;background:#edf6ff;color:var(--blue);border-radius:999px;padding:7px 12px;font-size:12px;font-weight:1000;text-transform:uppercase;letter-spacing:.1em}
-.hero h2{font-size:clamp(34px,5vw,64px);line-height:.98;margin:16px 0 12px;color:var(--navy);letter-spacing:-.055em}
-.hero h2 span{color:var(--blue)}
-.hero p{font-size:18px;color:var(--muted);margin:0;max-width:840px}
-.hero-actions{display:grid;grid-template-columns:repeat(4, minmax(130px,1fr));gap:10px;margin-top:22px;max-width:760px}
-.bigbtn{text-decoration:none;min-height:52px;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:17px;padding:12px 13px;font-weight:1000;color:#fff;background:linear-gradient(135deg,var(--blue),var(--blue2));box-shadow:var(--shadow2);transition:.15s}
-.bigbtn:hover,.card:hover,.protocol-card:hover,.board-card:hover{transform:translateY(-2px)}
-.bigbtn.white{background:#fff;color:var(--blue);border:1px solid var(--line2);box-shadow:0 12px 28px rgba(18,64,117,.08)}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.stat{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 12px 30px rgba(18,64,117,.08)}
-.stat b{display:block;font-size:35px;color:var(--blue);line-height:1;letter-spacing:-.04em}
-.stat span{display:block;color:var(--muted);font-weight:850;margin-top:7px;font-size:13px;text-transform:uppercase;letter-spacing:.06em}
-.notice{border:1px solid #b8d4f6;background:#f4f9ff;border-radius:20px;padding:15px;color:var(--muted);font-size:15px}
-.notice strong{color:var(--navy)}
-
-.section{margin:16px 0;border:1px solid var(--line);border-radius:30px;background:rgba(255,255,255,.86);box-shadow:var(--shadow);padding:24px;position:relative;overflow:hidden;scroll-margin-top:100px}
-.section:before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 50%,#fff))}
-.section > *{position:relative;z-index:1}
-.section h2{font-size:34px;line-height:1.05;margin:8px 0 4px;color:var(--navy);letter-spacing:-.035em}
-.sub{color:var(--muted);font-size:16px;margin:0 0 14px;max-width:900px}
-.controls{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:12px;border:1px solid var(--line);border-radius:22px;background:var(--panel);margin-bottom:16px}
-select,input{width:100%;min-height:48px;border:1px solid var(--line2);border-radius:999px;background:#fff;color:var(--ink);padding:11px 14px;font:inherit;font-weight:750;outline:0}
-select:focus,input:focus{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 14%,transparent)}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.grid.three{grid-template-columns:repeat(3,1fr)}
-.card,.protocol-card,.board-card,.panel{border:1px solid var(--line);background:#fff;border-radius:22px;padding:18px;box-shadow:0 12px 28px rgba(18,64,117,.07);transition:.16s}
-.card h3,.protocol-card h3,.board-card h3{margin:0 0 7px;color:var(--navy);font-size:22px;line-height:1.18}
-.latin{font-size:14px;color:var(--soft);font-style:italic;margin-bottom:10px}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.tag{display:inline-flex;border:1px solid #cfe0f5;background:#f1f7ff;color:#31659d;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:1000;text-transform:uppercase;letter-spacing:.06em}
-.tag.green{background:#ecfdf5;color:#047857;border-color:#bcebd8}
-.tag.amber{background:#fff7ed;color:#b45309;border-color:#fed7aa}
-.tag.red{background:#fef2f2;color:#b91c1c;border-color:#fecaca}
-dl{display:grid;grid-template-columns:142px 1fr;gap:8px 12px;margin:10px 0 0;font-size:15px}
-dt{font-weight:1000;color:var(--blue)} dd{margin:0;color:var(--muted)}
-.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.src{display:inline-flex;align-items:center;gap:6px;text-decoration:none;background:#eef6ff;border:1px solid #bdd7f8;color:var(--blue);border-radius:12px;padding:8px 10px;font-size:13px;font-weight:1000}
-.src:hover{background:#dfefff}
-.meta{color:var(--muted);font-weight:850;margin:0 0 12px}
-.empty{border:1px dashed var(--line2);border-radius:18px;background:#f9fcff;padding:24px;color:var(--muted)}
-.protocol-card ul{margin:10px 0 0;padding-left:18px;color:var(--muted)}
-
-.layout{display:grid;grid-template-columns:260px 1fr;gap:14px}
-.tabs{position:sticky;top:88px;align-self:start;display:grid;gap:8px}
-.tab{border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:16px;padding:13px;text-align:left;font-weight:1000;cursor:pointer;box-shadow:0 8px 18px rgba(18,64,117,.05)}
-.tab.active,.tab:hover{background:#eef6ff;border-color:var(--blue);color:var(--blue)}
-.board-lines{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.board-card h4{margin:0 0 6px;color:var(--navy)}
-.board-card p{margin:0;color:var(--muted)}
-
-#protocols{--accent:#0d63c9} #boards{--accent:#0ea5e9} #research{--accent:#2563eb} #medical-cannabis{--accent:#0f9f6e} #cannabis{--accent:#7c3aed} #mushrooms{--accent:#0e7490} #herbs{--accent:#15803d}
-
-.floatDock{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:120;width:min(940px,calc(100vw - 18px));display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px;border:1px solid rgba(174,201,234,.9);border-radius:24px;background:rgba(255,255,255,.94);backdrop-filter:blur(18px);box-shadow:0 18px 50px rgba(8,48,95,.18)}
-.floatDock a{text-decoration:none;border:1px solid #cfe0f5;border-radius:15px;background:#f4f9ff;color:var(--navy);min-height:42px;display:flex;align-items:center;justify-content:center;gap:7px;font-weight:1000;font-size:13px;text-align:center;padding:8px}
-.floatDock a:hover,.floatDock a.active{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;border-color:transparent}
-.footer{text-align:center;color:var(--soft);font-size:13px;padding:26px 0 12px}
-
-@media(max-width:1050px){
- .hero{grid-template-columns:1fr} .controls{grid-template-columns:1fr 1fr} .grid.three,.board-lines{grid-template-columns:repeat(2,1fr)} .layout{grid-template-columns:1fr} .tabs{position:relative;top:auto;display:flex;overflow:auto} .tab{white-space:nowrap}
-}
-@media(max-width:720px){
- body{padding-bottom:180px} .wrap,.head{padding-left:12px;padding-right:12px} .head{align-items:flex-start;flex-direction:column} .header-actions{width:100%;justify-content:stretch} .smallbtn{flex:1}
- .hero{padding:22px 16px;border-radius:25px} .hero-actions{grid-template-columns:1fr 1fr} .stats{grid-template-columns:1fr 1fr} .stat b{font-size:28px} .section{padding:18px;border-radius:24px} .section h2{font-size:28px} .controls,.grid,.grid.three,.board-lines{grid-template-columns:1fr} dl{grid-template-columns:1fr} .floatDock{grid-template-columns:repeat(4,1fr);gap:6px;bottom:8px;padding:8px;border-radius:18px} .floatDock a{font-size:11px;min-height:40px;padding:6px 4px;gap:4px;flex-direction:column;line-height:1.05} .brand h1{font-size:24px}
-}
-
-/* === Doctor-built clean blue + white final patch === */
-:root{--bg:#f7fbff;--bg2:#eef6ff;--ink:#10233f;--muted:#4a617d;--blue:#0a5fb4;--blue2:#1684e8;--navy:#062b55;--cyan:#0891b2;--green:#0e8f6a;--line:#d7e7f8;--line2:#b8d4ef;--card:#ffffff;--panel:#f6faff;--shadow:0 12px 36px rgba(10,80,150,.10);--shadow2:0 8px 22px rgba(10,95,180,.12)}
-body{background:linear-gradient(180deg,#ffffff 0%,#f4f9ff 48%,#edf6ff 100%)!important;color:var(--ink)!important;padding-bottom:126px!important}.topbar{background:rgba(255,255,255,.96)!important}.head{padding-top:10px!important;padding-bottom:10px!important}.header-actions{gap:8px!important}.smallbtn{padding:7px 11px!important;min-height:34px!important;font-size:13px!important;box-shadow:none!important}.smallbtn.primary{background:#0a5fb4!important}.brand h1{font-size:25px!important}.brand p{font-size:11px!important}.logo{width:44px!important;height:44px!important;border-radius:14px!important;background:linear-gradient(135deg,#075aa8,#21a5e8)!important}.hero{grid-template-columns:1.25fr .75fr!important;padding:28px!important;border-color:#d7e7f8!important;background:linear-gradient(135deg,#fff,#f5faff)!important}.kicker{background:#edf7ff!important;border-color:#b8d4ef!important;color:#0a5fb4!important}.hero h2{color:#062b55!important}.hero h2 span{color:#0a5fb4!important}.hero p{font-size:17px!important;line-height:1.65!important}.hero-actions-clean{grid-template-columns:repeat(4,minmax(120px,1fr))!important;max-width:850px!important}.bigbtn{background:linear-gradient(135deg,#0a5fb4,#1684e8)!important;box-shadow:none!important}.bigbtn.white{background:#f8fbff!important;color:#0a5fb4!important;border:1px solid #b8d4ef!important}.doctor-panel{display:grid;gap:12px}.doctor-card{border:1px solid #d7e7f8;background:#fff;border-radius:22px;padding:17px;box-shadow:0 10px 28px rgba(10,80,150,.08)}.doctor-card b{display:block;color:#0a5fb4;font-size:19px;margin-bottom:6px}.doctor-card span{display:block;color:#4a617d;font-size:14px;line-height:1.5}.section{background:#fff!important;border-color:#d7e7f8!important;box-shadow:0 10px 28px rgba(10,80,150,.08)!important}.section:before{height:5px!important;background:linear-gradient(90deg,#0a5fb4,#13a3d9)!important}.section h2{color:#062b55!important}.sub{color:#4a617d!important}.controls{background:#f6faff!important;border-color:#d7e7f8!important;grid-template-columns:repeat(3,1fr)!important}.controls input{grid-column:auto!important}select,input{border-color:#b8d4ef!important;background:#fff!important;color:#10233f!important}.card,.protocol-card,.board-card,.panel{box-shadow:0 8px 20px rgba(10,80,150,.06)!important;border-color:#d7e7f8!important}.compact-card{padding:16px!important}.compact-card h3{font-size:20px!important;margin-bottom:4px!important}.logic-line{margin:8px 0 10px;color:#344b67;font-size:15px;line-height:1.55}.compact-card details{margin-top:8px;border-top:1px solid #edf3fb;padding-top:8px}.compact-card summary{cursor:pointer;color:#0a5fb4;font-weight:900;font-size:14px}.compact-card dl{font-size:14px!important;grid-template-columns:118px 1fr!important}.compact-card dt{color:#0a5fb4!important}.compact-card dd{color:#4a617d!important}.tag{background:#f0f7ff!important;border-color:#d7e7f8!important;color:#2f6aa4!important}.tag.green{background:#edfdf6!important;color:#087956!important}.tag.amber{background:#fff8ed!important;color:#a65f00!important}.tag.red{background:#fff2f2!important;color:#a91b1b!important}.src{background:#eff7ff!important;border-color:#b8d4ef!important;color:#0a5fb4!important}.meta{font-size:14px!important;color:#4a617d!important}.floatDock{grid-template-columns:repeat(4,1fr)!important;width:min(760px,calc(100vw - 18px))!important;border-radius:20px!important;box-shadow:0 12px 34px rgba(10,80,150,.16)!important}.floatDock a{background:#f6faff!important;border-color:#d7e7f8!important;color:#0a5fb4!important}.floatDock a.active,.floatDock a:hover{background:#0a5fb4!important;color:#fff!important}.stats{display:none!important}
-@media(max-width:1050px){.hero{grid-template-columns:1fr!important}.controls{grid-template-columns:1fr 1fr!important}.hero-actions-clean{grid-template-columns:repeat(2,1fr)!important}.doctor-panel{grid-template-columns:1fr}}
-@media(max-width:720px){body{padding-bottom:150px!important}.head{flex-direction:row!important;align-items:center!important}.brand{width:100%}.header-actions{width:100%;display:flex!important;flex-direction:row!important}.smallbtn{flex:1 1 auto!important;font-size:12px!important}.hero{padding:20px 16px!important;border-radius:24px!important}.hero h2{font-size:34px!important}.hero-actions-clean{grid-template-columns:repeat(2,1fr)!important}.controls{grid-template-columns:1fr!important}.grid{grid-template-columns:1fr!important}.compact-card dl{grid-template-columns:1fr!important}.floatDock{grid-template-columns:repeat(4,1fr)!important;bottom:8px!important;padding:7px!important}.floatDock a{font-size:10.5px!important;min-height:38px!important;padding:5px!important}.doctor-card{padding:14px!important}}
-
-
-
-/* === Final 3x3 navigation + dose + cannabis medicines product patch === */
-.hero-actions-clean{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important;max-width:900px!important}.hero-actions-clean .bigbtn{min-height:58px!important;text-align:center!important}.floatDock{grid-template-columns:repeat(3,1fr)!important;width:min(820px,calc(100vw - 18px))!important}.dose-card{background:linear-gradient(135deg,#ffffff,#f2f8ff);border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:0 10px 28px rgba(10,80,150,.08)}.dose-card h3{margin:0 0 10px;color:var(--navy);font-size:22px}.dose-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}.dose-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.dose-result{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.dose-box{border:1px solid #cfe0f5;background:#fff;border-radius:18px;padding:13px}.dose-box b{display:block;color:#0a5fb4;font-size:22px;line-height:1}.dose-box span{display:block;color:#55708f;font-size:12px;font-weight:850;text-transform:uppercase;letter-spacing:.04em;margin-top:5px}.hydration-box{margin-top:12px;border:1px solid #bcebd8;background:#ecfdf5;color:#075e46;border-radius:18px;padding:12px;font-weight:850}.rx-print{display:none}.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.product-card{border:1px solid var(--line);background:#fff;border-radius:22px;padding:18px;box-shadow:0 8px 20px rgba(10,80,150,.06);overflow:hidden}.product-card h3{margin:0 0 5px;color:var(--navy);font-size:23px}.potency-badge{display:inline-flex;border-radius:999px;background:linear-gradient(135deg,#0a5fb4,#1684e8);color:#fff;padding:7px 11px;font-weight:1000;margin:8px 0 10px}.product-table-wrap{max-width:100%;overflow:auto;border:1px solid #d7e7f8;border-radius:16px;margin-top:10px}.product-table{width:100%;min-width:560px;border-collapse:collapse;background:#fff}.product-table th,.product-table td{padding:10px;border-bottom:1px solid #edf3fb;text-align:left;vertical-align:top;font-size:14px}.product-table th{color:#0a5fb4;background:#f6faff}.product-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.source-mini{display:inline-flex;text-decoration:none;border:1px solid #b8d4ef;background:#eff7ff;color:#0a5fb4;border-radius:12px;padding:8px 10px;font-size:13px;font-weight:1000}.source-mini:hover{background:#dfefff}.small-help{font-size:13px;color:#55708f;margin:8px 0 0}.bigbtn.dose{background:linear-gradient(135deg,#075aa8,#00a7d8)!important;color:#fff!important}.print-only{display:none!important}@media(max-width:920px){.dose-controls,.dose-result,.product-grid{grid-template-columns:1fr 1fr!important}.hero-actions-clean{grid-template-columns:repeat(3,1fr)!important}}@media(max-width:720px){.hero-actions-clean{grid-template-columns:repeat(3,1fr)!important;gap:8px!important}.hero-actions-clean .bigbtn{min-height:52px!important;font-size:12.5px!important;padding:9px 4px!important}.floatDock{grid-template-columns:repeat(3,1fr)!important}.floatDock a{font-size:10px!important}.dose-controls,.dose-result,.product-grid{grid-template-columns:1fr!important}.product-table{min-width:520px}.product-card{padding:15px!important}.dose-card{padding:15px!important}}
-@media print{body{background:#fff!important;color:#000!important;padding:0!important}.topbar,.hero,.section:not(#dose-calculator),.floatDock,.footer,.no-print{display:none!important}#dose-calculator{display:block!important;box-shadow:none!important;border:none!important;padding:0!important;margin:0!important}.rx-print{display:block!important}.print-only{display:block!important}.dose-card{box-shadow:none!important;border:1px solid #999!important}.dose-actions,.controls,.dose-card > .small-help{display:none!important}.rx-sheet{font-family:Arial,sans-serif;color:#000;padding:16px}.rx-sheet h1{font-size:22px;margin:0 0 8px}.rx-sheet table{width:100%;border-collapse:collapse;margin-top:10px}.rx-sheet td,.rx-sheet th{border:1px solid #777;padding:7px;text-align:left}.rx-contact{font-weight:900;margin-top:12px}}
-
-/* === Final cleanup patch: mobile-safe controls and visible clinical notices === */
-button.smallbtn{cursor:pointer;font:inherit}
-.notice{display:block!important}
-.header-actions .smallbtn{white-space:nowrap}
-@media(max-width:720px){.header-actions{gap:6px!important}.header-actions .smallbtn{font-size:11.5px!important;padding:7px 8px!important}.hero p,.sub{font-size:15px!important}.dose-actions .smallbtn{width:100%}}
-
-
-
-/* === Premium CancerQR clinical branding patch === */
 :root{
-  --brand-deep:#071f45;--brand-mid:#0a5fb4;--brand-sky:#20b6e8;--brand-mint:#18b981;--brand-ice:#eef9ff;--brand-gold:#f5b941;
+  /* Surfaces & ink (slate-based neutrals, AA contrast on white) */
+  --bg:#f5f8fc; --surface:#ffffff; --panel:#f7fafd; --panel2:#eef4fb;
+  --ink:#0f1f38; --muted:#475569; --soft:#64748b;
+  --line:#e2e8f0; --line2:#cbd5e1;
+
+  /* Brand & status (one confident blue; restrained accents) */
+  --blue:#0a5fb4; --blue-700:#084d93; --blue-50:#eef5fc;
+  --teal:#0e7e98; --emerald:#0e8f6a; --emerald-50:#ecfdf5; --emerald-200:#bbe7d4;
+  --amber:#b45309; --amber-50:#fff7ed; --amber-200:#fde2c0;
+  --red:#b91c1c; --red-50:#fef2f2; --red-200:#f6cccc;
+  --navy:#0a2a4e;
+
+  /* Effects */
+  --ring:0 0 0 3px rgba(10,95,180,.30);
+  --shadow-sm:0 1px 2px rgba(15,31,56,.05), 0 1px 3px rgba(15,31,56,.05);
+  --shadow:0 1px 2px rgba(15,31,56,.04), 0 10px 26px rgba(15,31,56,.07);
+  --shadow-lg:0 16px 40px rgba(15,31,56,.12);
+  --r:16px; --r-sm:10px; --r-lg:22px; --r-pill:999px;
+
+  --accent:var(--blue); /* per-section override below */
 }
-.topbar{background:linear-gradient(135deg,#061b3c 0%,#073568 48%,#0b78c8 100%)!important;border-bottom:0!important;box-shadow:0 14px 38px rgba(3,30,68,.24)!important;color:#fff!important}
-.topbar:after{content:"";display:block;height:4px;background:linear-gradient(90deg,#18b981,#20b6e8,#f5b941)}
-.brand{color:#fff!important}.brand h1{color:#fff!important;text-shadow:0 2px 10px rgba(0,0,0,.18)}.brand p{color:#bfeaff!important;letter-spacing:.14em!important}.logo{width:58px!important;height:58px!important;border-radius:19px!important;background:rgba(255,255,255,.12)!important;border:1px solid rgba(255,255,255,.32)!important;box-shadow:inset 0 0 24px rgba(255,255,255,.08),0 12px 30px rgba(0,0,0,.24)!important;overflow:hidden!important}.logo svg{width:100%;height:100%;display:block}.header-actions .smallbtn{background:rgba(255,255,255,.12)!important;border-color:rgba(255,255,255,.28)!important;color:#fff!important;box-shadow:none!important}.header-actions .smallbtn.primary{background:linear-gradient(135deg,#18b981,#20b6e8)!important;color:#042241!important;border-color:transparent!important}.header-actions .smallbtn.brand-chip{background:rgba(245,185,65,.16)!important;border-color:rgba(245,185,65,.5)!important;color:#fff7d9!important}.hero{background:radial-gradient(circle at 88% 8%,rgba(32,182,232,.20),transparent 28%),linear-gradient(135deg,#ffffff 0%,#f5fbff 62%,#eaf8ff 100%)!important;border:1px solid #c9e6f7!important}.hero:before{background:linear-gradient(90deg,#18b981,#20b6e8,#0a5fb4,#f5b941)!important;height:8px!important}.kicker{border-color:#b9e8f8!important;background:#ecfbff!important;color:#075985!important}.bigbtn{background:linear-gradient(135deg,#075aa8,#11a8db)!important;border:0!important}.bigbtn.dose{background:linear-gradient(135deg,#0f766e,#18b981)!important}.bigbtn.white{background:#ffffff!important;color:#075aa8!important;border:1px solid #bad9ef!important}.doctor-card{border-color:#cde8f7!important;background:linear-gradient(180deg,#fff,#f6fbff)!important}.doctor-card b{color:#075aa8!important}.section:before{background:linear-gradient(90deg,#18b981,#20b6e8,#0a5fb4)!important}.floatDock{background:rgba(255,255,255,.96)!important;border-color:#b9d9ef!important}.floatDock a.active,.floatDock a:hover{background:linear-gradient(135deg,#075aa8,#18b981)!important;color:#fff!important}
-@media(max-width:720px){.logo{width:52px!important;height:52px!important}.topbar{border-radius:0 0 18px 18px}.brand p{font-size:9.5px!important}.header-actions .smallbtn{font-size:11px!important}}
+
+/* ---- Base / reset ---- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:16px;line-height:1.6;color:var(--ink);
+  background:var(--bg);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  padding-bottom:120px;
+}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+img,svg{display:block;max-width:100%}
+h1,h2,h3,h4{text-wrap:balance}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+
+/* Visible keyboard focus everywhere (ring follows each element's radius) */
+a:focus-visible,button:focus-visible,select:focus-visible,input:focus-visible,
+summary:focus-visible,[tabindex]:focus-visible{
+  outline:2px solid transparent;box-shadow:var(--ring)
+}
+
+/* ---- Top bar / header (branded dark navy) ---- */
+.topbar{
+  position:sticky;top:0;z-index:80;
+  background:linear-gradient(120deg,#0a2547 0%,#0b3a6e 55%,#0c5aa6 100%);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  box-shadow:0 6px 24px rgba(8,30,62,.22);
+}
+.topbar::after{content:"";display:block;height:3px;
+  background:linear-gradient(90deg,var(--emerald),var(--teal),#f5b941)}
+.head{max-width:1280px;margin:0 auto;padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;color:#fff}
+.brand:hover{text-decoration:none}
+.logo{width:52px;height:52px;flex:0 0 auto;border-radius:14px;overflow:hidden;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);
+  box-shadow:inset 0 0 22px rgba(255,255,255,.07)}
+.logo svg{width:100%;height:100%}
+.brand h1{margin:0;font-size:22px;line-height:1.1;color:#fff;font-weight:700;letter-spacing:-.02em}
+.brand p{margin:2px 0 0;color:#bfe0ff;font-size:11px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.12em}
+.header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+
+/* ---- Buttons ---- */
+/* smallbtn base: tuned for light surfaces (e.g. the dose actions) */
+.smallbtn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  min-height:40px;padding:9px 15px;border-radius:var(--r-pill);
+  font:inherit;font-size:14px;font-weight:600;cursor:pointer;
+  color:var(--ink);background:var(--surface);border:1px solid var(--line2);
+  box-shadow:var(--shadow-sm);
+  transition:background .15s,border-color .15s,box-shadow .15s,transform .15s}
+.smallbtn:hover{background:var(--panel);border-color:#b6c6da;text-decoration:none}
+.smallbtn.primary{background:var(--blue);color:#fff;border-color:transparent}
+.smallbtn.primary:hover{background:var(--blue-700)}
+
+/* header chips on the dark bar */
+.header-actions .smallbtn{
+  color:#fff;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.26);
+  box-shadow:none;min-height:38px;font-size:13px}
+.header-actions .smallbtn:hover{background:rgba(255,255,255,.20)}
+.header-actions .smallbtn.primary{
+  background:linear-gradient(135deg,var(--emerald),var(--teal));
+  color:#04261d;border-color:transparent;font-weight:700}
+.header-actions .smallbtn.brand-chip{
+  background:rgba(245,185,65,.18);border-color:rgba(245,185,65,.5);color:#fff6da}
+
+.bigbtn{
+  display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;
+  min-height:54px;padding:12px 14px;border-radius:14px;
+  font-size:14px;font-weight:700;color:#fff;background:var(--blue);
+  box-shadow:var(--shadow-sm);
+  transition:transform .15s,box-shadow .15s,background .15s}
+.bigbtn:hover{transform:translateY(-2px);box-shadow:var(--shadow);text-decoration:none}
+.bigbtn.white{background:var(--surface);color:var(--blue);border:1px solid var(--line2)}
+.bigbtn.white:hover{background:var(--blue-50)}
+.bigbtn.dose{background:linear-gradient(135deg,var(--emerald),var(--teal));color:#fff}
+
+/* ---- Hero ---- */
+.hero{
+  margin:24px 0 18px;scroll-margin-top:96px;
+  display:grid;grid-template-columns:1.3fr .7fr;gap:24px;align-items:stretch;
+  padding:32px;border:1px solid var(--line);border-radius:var(--r-lg);
+  background:linear-gradient(135deg,#ffffff 0%,#f3f9ff 100%);
+  box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;
+  background:linear-gradient(90deg,var(--emerald),var(--teal),var(--blue),#f5b941)}
+.kicker{display:inline-flex;align-items:center;gap:8px;
+  border:1px solid #c5e3f5;background:#eaf6fd;color:#075985;
+  border-radius:var(--r-pill);padding:6px 13px;
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.hero h2{margin:16px 0 12px;font-size:clamp(30px,4.4vw,52px);line-height:1.04;
+  color:var(--navy);letter-spacing:-.03em;font-weight:800}
+.hero h2 span{color:var(--blue)}
+.hero p{margin:0;max-width:62ch;font-size:17px;line-height:1.65;color:var(--muted)}
+.hero-actions{margin-top:22px}
+.hero-actions-clean{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:600px}
+.doctor-panel{display:grid;gap:12px;align-content:start}
+.doctor-card{border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;
+  background:var(--surface);box-shadow:var(--shadow-sm)}
+.doctor-card b{display:block;color:var(--blue);font-size:16px;font-weight:700;margin-bottom:4px}
+.doctor-card span{display:block;color:var(--muted);font-size:14px;line-height:1.55}
+
+/* ---- Section shell ---- */
+.section{
+  margin:18px 0;padding:26px;scroll-margin-top:96px;
+  border:1px solid var(--line);border-radius:var(--r-lg);
+  background:var(--surface);box-shadow:var(--shadow);
+  position:relative;overflow:hidden}
+.section::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;
+  background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 35%,#fff))}
+.section>*{position:relative}
+.section .kicker{margin-bottom:6px}
+.section h2{margin:10px 0 6px;font-size:clamp(22px,2.6vw,28px);line-height:1.15;
+  color:var(--navy);letter-spacing:-.02em;font-weight:700}
+.sub{margin:0 0 16px;max-width:78ch;color:var(--muted);font-size:15px;line-height:1.6}
+.meta{margin:0 0 12px;color:var(--soft);font-size:14px;font-weight:600}
+
+/* ---- Controls / form fields ---- */
+.controls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  padding:14px;margin-bottom:18px;
+  border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+input,select{
+  width:100%;min-height:46px;padding:11px 13px;
+  font:inherit;font-size:14px;font-weight:500;color:var(--ink);
+  background:var(--surface);border:1px solid var(--line2);border-radius:var(--r-sm);
+  box-shadow:var(--shadow-sm);outline:none;
+  transition:border-color .15s,box-shadow .15s}
+input::placeholder{color:var(--soft)}
+input:focus,select:focus{border-color:var(--blue);box-shadow:var(--ring)}
+select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:38px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center}
+
+/* ---- Grids & cards ---- */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.card,.protocol-card,.board-card,.panel{
+  border:1px solid var(--line);border-radius:var(--r);
+  background:var(--surface);padding:18px;box-shadow:var(--shadow-sm);
+  transition:transform .15s,box-shadow .15s,border-color .15s}
+.card:hover,.protocol-card:hover,.board-card:hover{
+  transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--line2)}
+.card h3,.protocol-card h3,.board-card h3{
+  margin:0 0 6px;color:var(--navy);font-size:17px;font-weight:700;line-height:1.25}
+.compact-card{padding:16px}
+.compact-card h3{font-size:16px;margin-bottom:4px}
+.latin{margin:0 0 10px;font-size:13px;font-style:italic;color:var(--soft)}
+.logic-line{margin:8px 0 10px;color:#33455f;font-size:14px;line-height:1.55}
+.card ul,.protocol-card ul{margin:10px 0 0;padding-left:20px;color:var(--muted);font-size:14px;line-height:1.6}
+.card li,.protocol-card li{margin:3px 0}
+
+/* definition lists inside cards */
+dl{display:grid;grid-template-columns:130px 1fr;gap:8px 12px;margin:10px 0 0;font-size:14px}
+.compact-card dl{grid-template-columns:115px 1fr}
+dt{color:var(--blue);font-weight:700}
+dd{margin:0;color:var(--muted)}
+
+/* expandable detail */
+.compact-card details{margin-top:10px;border-top:1px solid var(--line);padding-top:10px}
+.compact-card summary{cursor:pointer;color:var(--blue);font-weight:700;font-size:14px;list-style:none}
+.compact-card summary::-webkit-details-marker{display:none}
+.compact-card summary::before{content:"\25B8\00A0";color:var(--soft)}
+.compact-card details[open] summary::before{content:"\25BE\00A0"}
+
+/* source / link chips */
+.links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.src,.source-mini{display:inline-flex;align-items:center;gap:6px;
+  background:var(--blue-50);border:1px solid #c5dcf2;color:var(--blue);
+  border-radius:10px;padding:8px 11px;font-size:13px;font-weight:700;
+  transition:background .15s}
+.src:hover,.source-mini:hover{background:#e0edfa;text-decoration:none}
+
+/* tags / status badges */
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tag{display:inline-flex;align-items:center;border:1px solid #cfe0f2;
+  background:#eef5fc;color:#1f567f;border-radius:var(--r-pill);
+  padding:4px 9px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.tag.green{background:var(--emerald-50);color:#077055;border-color:var(--emerald-200)}
+.tag.amber{background:var(--amber-50);color:var(--amber);border-color:var(--amber-200)}
+.tag.red{background:var(--red-50);color:var(--red);border-color:var(--red-200)}
+
+/* empty / fallback state */
+.empty{border:1px dashed var(--line2);border-radius:var(--r);
+  background:var(--panel);padding:24px;color:var(--muted);font-size:14px;line-height:1.6}
+
+/* ---- Boards ---- */
+.panel{padding:20px}
+.notice{display:block;border:1px solid #c5dcf2;background:var(--blue-50);
+  border-radius:12px;padding:14px;color:var(--muted);font-size:14px;line-height:1.55}
+.notice strong{color:var(--navy)}
+.board-lines{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.board-card{padding:16px}
+.board-card h4{margin:0 0 6px;color:var(--navy);font-size:15px;font-weight:700}
+.board-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.5}
+
+/* ---- Dose calculator ---- */
+.dose-card{border:1px solid var(--line);border-radius:var(--r-lg);
+  background:linear-gradient(135deg,#ffffff,#f4f9ff);
+  padding:22px;box-shadow:var(--shadow)}
+.dose-card h3{margin:0 0 14px;color:var(--navy);font-size:19px;font-weight:700}
+.dose-controls{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+.dose-result{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px}
+.dose-box{border:1px solid var(--line);background:var(--surface);
+  border-radius:14px;padding:14px;box-shadow:var(--shadow-sm)}
+.dose-box b{display:block;color:var(--blue);font-size:22px;font-weight:800;line-height:1.1}
+.dose-box span{display:block;margin-top:5px;color:var(--soft);
+  font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+.hydration-box{margin-top:14px;border:1px solid var(--emerald-200);
+  background:var(--emerald-50);color:#075e46;border-radius:14px;padding:13px;
+  font-weight:600;font-size:14px}
+.dose-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.small-help{margin:10px 0 0;color:var(--soft);font-size:13px;line-height:1.55}
+.rx-print{display:none}
+.print-only{display:none}
+
+/* ---- Products (Cannabis Medicines) ---- */
+.product-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.product-card{border:1px solid var(--line);border-radius:var(--r);
+  background:var(--surface);padding:18px;box-shadow:var(--shadow-sm);overflow:hidden;
+  transition:transform .15s,box-shadow .15s}
+.product-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.product-card h3{margin:0 0 4px;color:var(--navy);font-size:18px;font-weight:700}
+.potency-badge{display:inline-flex;align-items:center;margin:8px 0 10px;
+  border-radius:var(--r-pill);background:linear-gradient(135deg,var(--blue),#1684e8);
+  color:#fff;padding:6px 12px;font-size:13px;font-weight:700}
+.product-table-wrap{margin-top:10px;max-width:100%;overflow:auto;
+  border:1px solid var(--line);border-radius:12px}
+.product-table{width:100%;min-width:520px;border-collapse:collapse;background:var(--surface);font-size:14px}
+.product-table th,.product-table td{padding:10px 12px;border-bottom:1px solid var(--line);
+  text-align:left;vertical-align:top}
+.product-table th{color:var(--blue);background:var(--panel);font-weight:700}
+.product-table tr:last-child td{border-bottom:0}
+.product-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+
+/* ---- Floating dock nav ---- */
+.floatDock{
+  position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:120;
+  width:min(820px,calc(100vw - 24px));
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  padding:8px;border:1px solid var(--line2);border-radius:18px;
+  background:rgba(255,255,255,.92);backdrop-filter:blur(16px);
+  box-shadow:var(--shadow-lg)}
+.floatDock a{display:flex;align-items:center;justify-content:center;gap:7px;
+  min-height:42px;padding:8px;border-radius:12px;
+  border:1px solid var(--line);background:var(--panel);
+  color:var(--blue);font-size:13px;font-weight:700;text-align:center;
+  transition:background .15s,color .15s,border-color .15s}
+.floatDock a:hover,.floatDock a.active{
+  background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;
+  border-color:transparent;text-decoration:none}
+
+.footer{margin-top:20px;padding:24px 0 12px;text-align:center;
+  color:var(--soft);font-size:13px;line-height:1.6}
+
+/* ---- Per-section accent colors ---- */
+#protocols{--accent:#0a5fb4}
+#boards{--accent:#0e7e98}
+#research{--accent:#2563eb}
+#dose-calculator{--accent:#0e8f6a}
+#medical-cannabis{--accent:#0e8f6a}
+#cannabis{--accent:#7c3aed}
+#mushrooms{--accent:#0e7490}
+#herbs{--accent:#15803d}
+
+/* ---- Responsive ---- */
+@media (max-width:1024px){
+  .hero{grid-template-columns:1fr}
+  .controls,.dose-controls{grid-template-columns:repeat(2,1fr)}
+  .grid.three,.board-lines{grid-template-columns:repeat(2,1fr)}
+  .dose-result{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:768px){
+  .brand h1{font-size:19px}
+  .header-actions .smallbtn{font-size:12px;padding:7px 10px;min-height:36px}
+  .hero{padding:22px 18px}
+  .hero h2{font-size:clamp(28px,8vw,34px)}
+  .section{padding:20px}
+  .controls,.dose-controls,.grid,.grid.three,.board-lines,.product-grid{grid-template-columns:1fr}
+  .dose-result{grid-template-columns:repeat(2,1fr)}
+  dl,.compact-card dl{grid-template-columns:1fr;gap:2px 0}
+  dl dd{margin-bottom:6px}
+  .floatDock{width:calc(100vw - 16px);bottom:8px;gap:6px;padding:7px}
+  .floatDock a{font-size:11px;min-height:40px;flex-direction:column;gap:3px;line-height:1.1;padding:6px 4px}
+  body{padding-bottom:150px}
+}
+@media (max-width:480px){
+  .hero-actions-clean{gap:7px}
+  .bigbtn{min-height:50px;font-size:13px;padding:10px 6px}
+  .product-table{min-width:440px}
+}
+
+/* ---- Print: doctor Rx sheet (preserves the print/PDF feature) ---- */
+@media print{
+  body{background:#fff;color:#000;padding:0}
+  .topbar,.hero,.section:not(#dose-calculator),.floatDock,.footer,.no-print{display:none!important}
+  #dose-calculator{display:block!important;box-shadow:none;border:0;padding:0;margin:0}
+  #dose-calculator::before{display:none}
+  .rx-print{display:block!important}
+  .print-only{display:block!important}
+  .dose-card{box-shadow:none;border:1px solid #999;background:#fff}
+  .dose-actions,.controls,.dose-card>.small-help{display:none!important}
+  .rx-sheet{font-family:Arial,Helvetica,sans-serif;color:#000;padding:16px}
+  .rx-sheet h1{font-size:22px;margin:0 0 8px}
+  .rx-sheet table{width:100%;border-collapse:collapse;margin-top:10px}
+  .rx-sheet td,.rx-sheet th{border:1px solid #777;padding:7px;text-align:left}
+  .rx-contact{font-weight:700;margin-top:12px}
+}
 
 </style>
 </head>
@@ -174,25 +395,25 @@ button.smallbtn{cursor:pointer;font:inherit}
   </div>
 </section>
 
-<section class="section" id="protocols"><span class="kicker">Protocols</span><h2>Protocol boards</h2><p class="sub">Select a protocol or keep default All. Fasting/diet is shown with nutrition and cachexia safety guardrails.</p><div class="controls"><select id="protocolSelect"></select><input id="protocolSearch" placeholder="Search protocol, clinical fit, safety logic..."></div><div class="grid three" id="protocolGrid"></div></section>
+<section class="section" id="protocols"><span class="kicker">Protocols</span><h2>Protocol boards</h2><p class="sub">Select a protocol or keep default All. Fasting/diet is shown with nutrition and cachexia safety guardrails.</p><div class="controls"><select id="protocolSelect" aria-label="Select protocol"></select><input id="protocolSearch" aria-label="Search protocols" placeholder="Search protocol, clinical fit, safety logic..."></div><div class="grid three" id="protocolGrid"></div></section>
 
-<section class="section" id="boards"><span class="kicker">Boards</span><h2>Specialty tumor-board selector</h2><p class="sub">Select cancer type and board specialty. Each line opens only direct authority/scientific links where available.</p><div class="controls"><select id="cancerTypeSelect"></select><select id="specialtySelect"></select></div><div id="boardPanel"></div></section>
+<section class="section" id="boards"><span class="kicker">Boards</span><h2>Specialty tumor-board selector</h2><p class="sub">Select cancer type and board specialty. Each line opens only direct authority/scientific links where available.</p><div class="controls"><select id="cancerTypeSelect" aria-label="Select cancer type"></select><select id="specialtySelect" aria-label="Select board specialty"></select></div><div id="boardPanel"></div></section>
 
-<section class="section" id="research"><span class="kicker">Research</span><h2>Master research evidence explorer</h2><p class="sub">Doctor-approved direct links from Cannabis Medicines, Cannabis, Mushrooms, Herbs and Repurposed Drugs. Broad PubMed search-query links are excluded.</p><div class="controls"><select id="researchDomain"></select><select id="researchItem"></select><select id="researchProperty"></select><input id="researchSearch" placeholder="Search molecule, mechanism, cancer type..."></div><p class="meta" id="researchCount"></p><div class="grid" id="researchGrid"></div></section>
+<section class="section" id="research"><span class="kicker">Research</span><h2>Master research evidence explorer</h2><p class="sub">Doctor-approved direct links from Cannabis Medicines, Cannabis, Mushrooms, Herbs and Repurposed Drugs. Broad PubMed search-query links are excluded.</p><div class="controls"><select id="researchDomain" aria-label="Research domain"></select><select id="researchItem" aria-label="Research item"></select><select id="researchProperty" aria-label="Research property"></select><input id="researchSearch" aria-label="Search research evidence" placeholder="Search molecule, mechanism, cancer type..."></div><p class="meta" id="researchCount"></p><div class="grid" id="researchGrid"></div></section>
 
 <section class="section" id="dose-calculator"><span class="kicker">Dose Calculator</span><h2>Doctor dose calculator</h2><p class="sub">Weight × pain grade gives X. Start X/2 at night. Week 1 target 5X. Week 2 target 10X. Upper reference 20X. Hydration must be checked before escalation.</p>
   <div class="dose-card">
     <h3>Patient and dose inputs</h3>
     <div class="dose-controls">
-      <input id="doctorName" placeholder="Doctor name">
-      <input id="doctorMobile" placeholder="Doctor mobile">
-      <input id="patientName" placeholder="Patient name">
-      <input id="patientMobile" placeholder="Patient mobile">
-      <input id="weightKg" type="number" min="1" step="0.1" placeholder="Weight in kg">
-      <select id="painGrade"><option value="1">Pain grade 1</option><option value="2">Pain grade 2</option><option value="3">Pain grade 3</option><option value="4">Pain grade 4</option><option value="5" selected>Pain grade 5</option><option value="6">Pain grade 6</option><option value="7">Pain grade 7</option><option value="8">Pain grade 8</option><option value="9">Pain grade 9</option><option value="10">Pain grade 10</option></select>
-      <select id="doseProduct"></select>
-      <select id="hydrationCheck"><option value="Hydration checked">Hydration checked</option><option value="Hydration not checked">Hydration not checked</option><option value="Dehydration risk / hold escalation">Dehydration risk / hold escalation</option></select>
-      <input id="clinicalNote" placeholder="Optional ESR / CRP / clinical note">
+      <input id="doctorName" aria-label="Doctor name" placeholder="Doctor name">
+      <input id="doctorMobile" aria-label="Doctor mobile number" placeholder="Doctor mobile">
+      <input id="patientName" aria-label="Patient name" placeholder="Patient name">
+      <input id="patientMobile" aria-label="Patient mobile number" placeholder="Patient mobile">
+      <input id="weightKg" aria-label="Patient weight in kilograms" type="number" min="1" step="0.1" placeholder="Weight in kg">
+      <select id="painGrade" aria-label="Pain grade"><option value="1">Pain grade 1</option><option value="2">Pain grade 2</option><option value="3">Pain grade 3</option><option value="4">Pain grade 4</option><option value="5" selected>Pain grade 5</option><option value="6">Pain grade 6</option><option value="7">Pain grade 7</option><option value="8">Pain grade 8</option><option value="9">Pain grade 9</option><option value="10">Pain grade 10</option></select>
+      <select id="doseProduct" aria-label="Select product for dosing"></select>
+      <select id="hydrationCheck" aria-label="Hydration status"><option value="Hydration checked">Hydration checked</option><option value="Hydration not checked">Hydration not checked</option><option value="Dehydration risk / hold escalation">Dehydration risk / hold escalation</option></select>
+      <input id="clinicalNote" aria-label="Clinical note, ESR or CRP" placeholder="Optional ESR / CRP / clinical note">
     </div>
     <div class="dose-result" id="doseResult"></div>
     <div class="hydration-box" id="hydrationBox">Hydration check required before dose escalation.</div>
@@ -202,13 +423,13 @@ button.smallbtn{cursor:pointer;font:inherit}
   </div>
 </section>
 
-<section class="section" id="medical-cannabis"><span class="kicker">Cannabis Medicines</span><h2>Cannabis Medicines product evidence</h2><p class="sub">Select a product or keep default All products. Each product shows highlighted mg per drop/tsp, ingredient logic and direct research links. Non-oncology cannabis links were removed from the Cannabis section; Cannabis Medicines product cards are ingredient/formula research navigation and not product-level cancer efficacy claims.</p><div class="controls"><select id="productSelect"></select><select id="productProperty"></select><input id="productSearch" placeholder="Search product or ingredient..."></div><p class="meta" id="productCount"></p><div class="product-grid" id="productGrid"></div></section>
+<section class="section" id="medical-cannabis"><span class="kicker">Cannabis Medicines</span><h2>Cannabis Medicines product evidence</h2><p class="sub">Select a product or keep default All products. Each product shows highlighted mg per drop/tsp, ingredient logic and direct research links. Non-oncology cannabis links were removed from the Cannabis section; Cannabis Medicines product cards are ingredient/formula research navigation and not product-level cancer efficacy claims.</p><div class="controls"><select id="productSelect" aria-label="Select cannabis-medicine product"></select><select id="productProperty" aria-label="Filter products by property"></select><input id="productSearch" aria-label="Search products or ingredients" placeholder="Search product or ingredient..."></div><p class="meta" id="productCount"></p><div class="product-grid" id="productGrid"></div></section>
 
-<section class="section" id="cannabis"><span class="kicker">Cannabis Oncology Evidence</span><h2>Cannabis oncology research links</h2><p class="sub">Strict oncology-only cannabis links: CINV, cancer pain/palliative symptoms, cachexia/appetite, GBM research and preclinical antitumor mechanisms. Generic non-oncology cannabis links removed.</p><div class="controls"><select id="cannabisItem"></select><select id="cannabisProperty"></select><input id="cannabisSearch" placeholder="Search CINV, cancer pain, cachexia, GBM, cannabinoid mechanism..."></div><p class="meta" id="cannabisCount"></p><div class="grid" id="cannabisGrid"></div></section>
+<section class="section" id="cannabis"><span class="kicker">Cannabis Oncology Evidence</span><h2>Cannabis oncology research links</h2><p class="sub">Strict oncology-only cannabis links: CINV, cancer pain/palliative symptoms, cachexia/appetite, GBM research and preclinical antitumor mechanisms. Generic non-oncology cannabis links removed.</p><div class="controls"><select id="cannabisItem" aria-label="Select cannabis topic"></select><select id="cannabisProperty" aria-label="Filter cannabis evidence by property"></select><input id="cannabisSearch" aria-label="Search cannabis oncology evidence" placeholder="Search CINV, cancer pain, cachexia, GBM, cannabinoid mechanism..."></div><p class="meta" id="cannabisCount"></p><div class="grid" id="cannabisGrid"></div></section>
 
-<section class="section" id="mushrooms"><span class="kicker">Mushrooms</span><h2>Medicinal mushrooms</h2><p class="sub">Separate mushroom evidence: beta-glucans, PSK/PSP/lentinan, immune adjunct logic, and safety cautions.</p><div class="controls"><select id="mushroomItem"></select><select id="mushroomProperty"></select><input id="mushroomSearch" placeholder="Search mushroom, beta-glucan, PSK..."></div><p class="meta" id="mushroomCount"></p><div class="grid" id="mushroomGrid"></div></section>
+<section class="section" id="mushrooms"><span class="kicker">Mushrooms</span><h2>Medicinal mushrooms</h2><p class="sub">Separate mushroom evidence: beta-glucans, PSK/PSP/lentinan, immune adjunct logic, and safety cautions.</p><div class="controls"><select id="mushroomItem" aria-label="Select mushroom"></select><select id="mushroomProperty" aria-label="Filter mushrooms by property"></select><input id="mushroomSearch" aria-label="Search mushrooms" placeholder="Search mushroom, beta-glucan, PSK..."></div><p class="meta" id="mushroomCount"></p><div class="grid" id="mushroomGrid"></div></section>
 
-<section class="section" id="herbs"><span class="kicker">Herbs</span><h2>Anti-cancer herb research</h2><p class="sub">Separate monoherb/phytochemical evidence with clear “preclinical/supportive/conditional” boundaries.</p><div class="controls"><select id="herbItem"></select><select id="herbProperty"></select><input id="herbSearch" placeholder="Search herb, active compound, mechanism..."></div><p class="meta" id="herbCount"></p><div class="grid" id="herbGrid"></div></section>
+<section class="section" id="herbs"><span class="kicker">Herbs</span><h2>Anti-cancer herb research</h2><p class="sub">Separate monoherb/phytochemical evidence with clear “preclinical/supportive/conditional” boundaries.</p><div class="controls"><select id="herbItem" aria-label="Select herb"></select><select id="herbProperty" aria-label="Filter herbs by property"></select><input id="herbSearch" aria-label="Search herbs" placeholder="Search herb, active compound, mechanism..."></div><p class="meta" id="herbCount"></p><div class="grid" id="herbGrid"></div></section>
 
 
 <div class="footer">CancerQR Research · cancerQR.com · Doctor/oncologist evidence navigator · Final decision remains with the treating oncologist/RMP.</div>
