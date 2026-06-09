@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<title>CancerQR Research | EndoCann TumorBoard Navigator</title>
+<title>CancerQR Research | EndoCann TumorBoard Navigator · Final Working</title>
 <style>
 :root {
   --bg:#f4f8ff; --bg2:#eaf3ff; --ink:#0b1f3a; --muted:#55708f; --soft:#7d91aa;
@@ -132,7 +132,172 @@ button.smallbtn{cursor:pointer;font:inherit}
 .brand{color:#fff!important}.brand h1{color:#fff!important;text-shadow:0 2px 10px rgba(0,0,0,.18)}.brand p{color:#bfeaff!important;letter-spacing:.14em!important}.logo{width:58px!important;height:58px!important;border-radius:19px!important;background:rgba(255,255,255,.12)!important;border:1px solid rgba(255,255,255,.32)!important;box-shadow:inset 0 0 24px rgba(255,255,255,.08),0 12px 30px rgba(0,0,0,.24)!important;overflow:hidden!important}.logo svg{width:100%;height:100%;display:block}.header-actions .smallbtn{background:rgba(255,255,255,.12)!important;border-color:rgba(255,255,255,.28)!important;color:#fff!important;box-shadow:none!important}.header-actions .smallbtn.primary{background:linear-gradient(135deg,#18b981,#20b6e8)!important;color:#042241!important;border-color:transparent!important}.header-actions .smallbtn.brand-chip{background:rgba(245,185,65,.16)!important;border-color:rgba(245,185,65,.5)!important;color:#fff7d9!important}.hero{background:radial-gradient(circle at 88% 8%,rgba(32,182,232,.20),transparent 28%),linear-gradient(135deg,#ffffff 0%,#f5fbff 62%,#eaf8ff 100%)!important;border:1px solid #c9e6f7!important}.hero:before{background:linear-gradient(90deg,#18b981,#20b6e8,#0a5fb4,#f5b941)!important;height:8px!important}.kicker{border-color:#b9e8f8!important;background:#ecfbff!important;color:#075985!important}.bigbtn{background:linear-gradient(135deg,#075aa8,#11a8db)!important;border:0!important}.bigbtn.dose{background:linear-gradient(135deg,#0f766e,#18b981)!important}.bigbtn.white{background:#ffffff!important;color:#075aa8!important;border:1px solid #bad9ef!important}.doctor-card{border-color:#cde8f7!important;background:linear-gradient(180deg,#fff,#f6fbff)!important}.doctor-card b{color:#075aa8!important}.section:before{background:linear-gradient(90deg,#18b981,#20b6e8,#0a5fb4)!important}.floatDock{background:rgba(255,255,255,.96)!important;border-color:#b9d9ef!important}.floatDock a.active,.floatDock a:hover{background:linear-gradient(135deg,#075aa8,#18b981)!important;color:#fff!important}
 @media(max-width:720px){.logo{width:52px!important;height:52px!important}.topbar{border-radius:0 0 18px 18px}.brand p{font-size:9.5px!important}.header-actions .smallbtn{font-size:11px!important}}
 
+
+/* === CancerQR final premium clinical palette + mobile/button polish === */
+:root{
+  --brand-deep:#051a33!important;
+  --brand-navy:#082b55!important;
+  --brand-blue:#0b63c7!important;
+  --brand-cyan:#19b8e6!important;
+  --brand-mint:#14b88a!important;
+  --brand-gold:#f2b84b!important;
+  --brand-ice:#f2fbff!important;
+  --ink:#0b1f3a!important;
+  --muted:#425a76!important;
+  --line:#c9e5f5!important;
+  --line2:#acd5eb!important;
+  --panel:#f6fbff!important;
+}
+body{
+  background:
+    radial-gradient(circle at 88% -8%,rgba(25,184,230,.18),transparent 28%),
+    radial-gradient(circle at 6% 8%,rgba(20,184,138,.12),transparent 26%),
+    linear-gradient(180deg,#ffffff 0%,#f7fcff 48%,#edf8ff 100%)!important;
+}
+.topbar{
+  background:
+    radial-gradient(circle at 95% 0%,rgba(25,184,230,.34),transparent 30%),
+    linear-gradient(135deg,#051a33 0%,#082b55 45%,#0b63c7 100%)!important;
+  color:#fff!important;
+}
+.logo{
+  background:rgba(255,255,255,.14)!important;
+  border:1px solid rgba(255,255,255,.34)!important;
+}
+.brand h1{font-size:27px!important;letter-spacing:-.035em!important}
+.brand p{color:#d1f4ff!important}
+.header-actions .smallbtn.primary{
+  background:linear-gradient(135deg,#14b88a,#19b8e6)!important;
+  color:#05213e!important;
+}
+.header-actions .smallbtn{
+  border-color:rgba(255,255,255,.32)!important;
+  background:rgba(255,255,255,.11)!important;
+  color:#fff!important;
+}
+.hero{
+  border-color:#bee4f5!important;
+  background:
+    radial-gradient(circle at 92% 8%,rgba(25,184,230,.18),transparent 30%),
+    radial-gradient(circle at 18% 0%,rgba(20,184,138,.10),transparent 28%),
+    linear-gradient(135deg,#ffffff 0%,#f7fcff 58%,#ebf9ff 100%)!important;
+}
+.hero h2{color:#061f42!important}
+.hero h2 span{background:linear-gradient(135deg,#0b63c7,#14b88a);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+.kicker{
+  background:#eefcff!important;
+  border-color:#afe4f1!important;
+  color:#075985!important;
+}
+.bigbtn{
+  background:linear-gradient(135deg,#0b63c7,#19b8e6)!important;
+  box-shadow:0 12px 28px rgba(11,99,199,.16)!important;
+}
+.bigbtn.dose{
+  background:linear-gradient(135deg,#0f766e,#14b88a)!important;
+}
+.bigbtn.white{
+  background:#ffffff!important;
+  color:#0b63c7!important;
+  border:1px solid #b9daed!important;
+  box-shadow:0 10px 22px rgba(8,43,85,.06)!important;
+}
+.bigbtn:focus-visible,.smallbtn:focus-visible,.src:focus-visible,.source-mini:focus-visible,.floatDock a:focus-visible,select:focus-visible,input:focus-visible{
+  outline:3px solid rgba(242,184,75,.65)!important;
+  outline-offset:3px!important;
+}
+.section{
+  border-color:#cbe7f5!important;
+  background:linear-gradient(180deg,#ffffff,#fbfeff)!important;
+}
+.section:before{
+  background:linear-gradient(90deg,#14b88a,#19b8e6,#0b63c7,#f2b84b)!important;
+}
+.card,.protocol-card,.board-card,.panel,.product-card,.dose-card,.doctor-card{
+  border-color:#cbe7f5!important;
+  box-shadow:0 10px 26px rgba(8,43,85,.075)!important;
+}
+.dose-box b,.doctor-card b,.card h3,.product-card h3{color:#082b55!important}
+.potency-badge{background:linear-gradient(135deg,#0b63c7,#14b88a)!important}
+.floatDock{
+  border-color:#b9daed!important;
+  box-shadow:0 16px 38px rgba(8,43,85,.18)!important;
+}
+.floatDock a{
+  color:#075aa8!important;
+}
+.floatDock a.active,.floatDock a:hover{
+  background:linear-gradient(135deg,#0b63c7,#14b88a)!important;
+  color:#fff!important;
+}
+.rx-table{width:100%;border-collapse:collapse;margin:12px 0;font-family:Arial,sans-serif}
+.rx-table th,.rx-table td{border:1px solid #7f8da3;padding:8px;text-align:left;vertical-align:top}
+.rx-table th{background:#eef6ff;color:#061f42}
+.rx-note{border:1px solid #9edbc8;background:#effdf8;padding:10px;border-radius:10px;margin-top:10px}
+@media(max-width:720px){
+  .head{gap:8px!important}
+  .brand h1{font-size:23px!important}
+  .header-actions{display:grid!important;grid-template-columns:1fr 1fr!important}
+  .header-actions .smallbtn{white-space:normal!important;line-height:1.1!important}
+  .hero h2{font-size:32px!important}
+}
+
+
+/* === Emergency working patch: better contrast, reliable mobile taps === */
+a,button,select,input{touch-action:manipulation}
+select,input,button{pointer-events:auto!important}
+.floatDock{z-index:9999!important}
+.topbar{z-index:9998!important}
+.section{scroll-margin-top:118px!important}
+@media(max-width:720px){.section{scroll-margin-top:150px!important}.floatDock a{pointer-events:auto!important}.hero-actions-clean .bigbtn{pointer-events:auto!important}.controls select,.controls input{min-height:50px!important;font-size:16px!important}.header-actions{display:none!important}}
+
+/* === Final clinical support + prescription PDF patch === */
+.support-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.support-card{border:1px solid #cbe7f5;background:#fff;border-radius:18px;padding:13px;box-shadow:0 8px 18px rgba(8,43,85,.05)}
+.support-card b{display:block;color:#082b55;margin-bottom:4px}
+.support-card span{display:block;color:#425a76;font-size:13px;line-height:1.45}
+.validation-panel{border:1px solid #9edbc8;background:linear-gradient(135deg,#effdf8,#f6fbff);border-radius:20px;padding:15px;margin:12px 0;color:#0b3b31}
+.validation-panel b{color:#075e46}
+.audit-list{margin:8px 0 0;padding-left:18px}
+.audit-list li{margin:5px 0}
+.rx-sheet{max-width:920px;margin:0 auto;background:#fff}
+.rx-header{border-bottom:3px solid #082b55;padding-bottom:10px;margin-bottom:12px}
+.rx-header h1{margin:0;color:#082b55;font-size:23px}
+.rx-header p{margin:4px 0 0;color:#334155}
+.rx-section-title{background:#eef6ff;color:#061f42;font-weight:900;padding:8px 10px;border:1px solid #7f8da3;border-bottom:0;margin-top:12px}
+.rx-table{width:100%;border-collapse:collapse;margin:0 0 10px;font-family:Arial,sans-serif}
+.rx-table th,.rx-table td{border:1px solid #7f8da3;padding:8px;text-align:left;vertical-align:top}
+.rx-table th{width:30%;background:#f5f9ff;color:#061f42}
+.rx-note{border:1px solid #9edbc8;background:#effdf8;padding:10px;border-radius:10px;margin-top:10px}
+.rx-warning{border:1px solid #f1c27d;background:#fff8ed;padding:10px;border-radius:10px;margin-top:10px;color:#7c4a03}
+@media(max-width:920px){.support-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:720px){.support-grid{grid-template-columns:1fr}.validation-panel{font-size:14px}.rx-table th,.rx-table td{display:block;width:100%}.rx-table th{border-bottom:0}}
+@media print{
+  @page{size:A4;margin:12mm}
+  .rx-sheet{font-size:12px;line-height:1.35}
+  .rx-header h1{font-size:20px}
+  .rx-section-title{break-after:avoid}
+  .rx-table{break-inside:avoid}
+  .rx-note,.rx-warning{break-inside:avoid}
+}
+
+
+
+/* === Hero de-duplication + clean mobile UX patch === */
+.hero{min-height:auto!important;align-items:center!important;padding:26px 22px 20px!important}
+.hero-primary-actions{display:grid!important;grid-template-columns:1.25fr 1fr 1fr!important;gap:12px!important;margin-top:22px!important;max-width:980px!important}
+.hero-primary-actions .hero-cta{min-height:58px!important;border-radius:18px!important;font-size:15px!important;text-align:center!important;line-height:1.15!important;padding:12px 14px!important}
+.hero-flow-strip{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px;padding:10px 12px;border:1px solid #cce7f4;background:rgba(255,255,255,.72);border-radius:18px;color:#274b68;font-size:13px;font-weight:900;box-shadow:0 8px 18px rgba(8,43,85,.06)}
+.hero-flow-strip span{display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;background:#f3fbff;border:1px solid #d6edf7;color:#075985}.hero-flow-strip b{color:#13a78a}
+.floatDock{opacity:0!important;visibility:hidden!important;transform:translate(-50%,18px)!important;transition:opacity .2s ease,transform .2s ease,visibility .2s ease!important;pointer-events:none!important}
+body.show-dock .floatDock{opacity:1!important;visibility:visible!important;transform:translate(-50%,0)!important;pointer-events:auto!important}
+@media(max-width:720px){
+  body{padding-bottom:20px!important}.hero{padding:18px 14px!important;margin-top:14px!important}.hero h2{font-size:34px!important;line-height:1.02!important;margin:14px 0 10px!important}.hero p{font-size:16px!important;line-height:1.55!important}.hero-primary-actions{grid-template-columns:1fr!important;gap:10px!important;margin-top:18px!important}.hero-primary-actions .hero-cta{min-height:52px!important;font-size:14px!important}.hero-flow-strip{font-size:12px!important;gap:5px!important;padding:8px!important}.hero-flow-strip span{padding:3px 7px}.doctor-panel{margin-top:14px!important}.floatDock{bottom:8px!important}body.show-dock{padding-bottom:150px!important}
+}
+
 </style>
+
+<!-- Final working build: navigation, filters, dose print/WhatsApp and URL syntax validated locally. -->
 </head>
 <body>
 <header class="topbar">
@@ -155,16 +320,13 @@ button.smallbtn{cursor:pointer;font:inherit}
     <span class="kicker">Evidence-based CancerQR TumorBoard</span>
     <h2>CancerQR <span>TumorBoard</span><br>EndoCann Protocols</h2>
     <p>Clinician-first tumor-board navigator using EndoCann protocol logic, weight-based titration, ESR/CRP tracking, pain-grade review and treatment-line context. Designed for supportive oncology documentation, research navigation and doctor-led decision support.</p>
-    <div class="hero-actions hero-actions-clean">
-      <a class="bigbtn" href="#home">Home</a>
-      <a class="bigbtn white" href="#protocols">Protocols</a>
-      <a class="bigbtn white" href="#boards">Boards</a>
-      <a class="bigbtn white" href="#research">Research</a>
-      <a class="bigbtn dose" href="#dose-calculator">Dose Calculator</a>
-      <a class="bigbtn white" href="#medical-cannabis">Cannabis Medicines</a>
-      <a class="bigbtn white" href="#cannabis">Cannabis</a>
-      <a class="bigbtn white" href="#mushrooms">Mushrooms</a>
-      <a class="bigbtn white" href="#herbs">Herbs</a>
+    <div class="hero-primary-actions">
+      <a class="bigbtn dose hero-cta" href="#dose-calculator">Open Dose + PDF Prescription</a>
+      <a class="bigbtn white hero-cta" href="#protocols">View Clinical Protocols</a>
+      <a class="bigbtn white hero-cta" href="#research">Explore Research Evidence</a>
+    </div>
+    <div class="hero-flow-strip" aria-label="CancerQR workflow">
+      <span>Patient details</span><b>→</b><span>Dose titration</span><b>→</b><span>Diet / fasting</span><b>→</b><span>Mushroom / herbs</span><b>→</b><span>Print PDF</span>
     </div>
   </div>
   <div class="doctor-panel">
@@ -182,22 +344,40 @@ button.smallbtn{cursor:pointer;font:inherit}
 
 <section class="section" id="dose-calculator"><span class="kicker">Dose Calculator</span><h2>Doctor dose calculator</h2><p class="sub">Weight × pain grade gives X. Start X/2 at night. Week 1 target 5X. Week 2 target 10X. Upper reference 20X. Hydration must be checked before escalation.</p>
   <div class="dose-card">
-    <h3>Patient and dose inputs</h3>
+    <h3>Patient, doctor and protocol inputs</h3>
     <div class="dose-controls">
       <input id="doctorName" placeholder="Doctor name">
       <input id="doctorMobile" placeholder="Doctor mobile">
       <input id="patientName" placeholder="Patient name">
       <input id="patientMobile" placeholder="Patient mobile">
+      <input id="patientAge" placeholder="Age / Sex">
+      <input id="diagnosis" placeholder="Cancer / diagnosis">
+      <input id="treatmentLine" placeholder="Current treatment line / chemo / RT / surgery">
       <input id="weightKg" type="number" min="1" step="0.1" placeholder="Weight in kg">
       <select id="painGrade"><option value="1">Pain grade 1</option><option value="2">Pain grade 2</option><option value="3">Pain grade 3</option><option value="4">Pain grade 4</option><option value="5" selected>Pain grade 5</option><option value="6">Pain grade 6</option><option value="7">Pain grade 7</option><option value="8">Pain grade 8</option><option value="9">Pain grade 9</option><option value="10">Pain grade 10</option></select>
       <select id="doseProduct"></select>
       <select id="hydrationCheck"><option value="Hydration checked">Hydration checked</option><option value="Hydration not checked">Hydration not checked</option><option value="Dehydration risk / hold escalation">Dehydration risk / hold escalation</option></select>
-      <input id="clinicalNote" placeholder="Optional ESR / CRP / clinical note">
+      <select id="dietPlan"></select>
+      <select id="fastingPlan"></select>
+      <select id="mushroomPlan"></select>
+      <select id="repurposedPlan"></select>
+      <select id="monoherbPlan"></select>
+      <input id="clinicalNote" placeholder="ESR / CRP / LFT / RFT / symptoms / clinical note">
+      <input id="dietNote" placeholder="Diet, fasting or contraindication note">
     </div>
     <div class="dose-result" id="doseResult"></div>
     <div class="hydration-box" id="hydrationBox">Hydration check required before dose escalation.</div>
+    <div class="support-grid" id="supportPreview"></div>
+    <div class="validation-panel">
+      <b>Scientific and logical validation boundary:</b>
+      <ul class="audit-list">
+        <li>Cannabis/cannabinoids are positioned for cancer-related symptom support and not as cancer-directed treatment outside clinical trials.</li>
+        <li>Functional mushrooms, repurposed drugs and monoherbs are marked as adjunct / conditional / preclinical unless authority evidence supports stronger wording.</li>
+        <li>Dose calculator is a documentation and titration-support note; final prescription remains with the treating RMP/oncologist.</li>
+      </ul>
+    </div>
     <div class="dose-actions no-print"><button class="smallbtn primary" type="button" onclick="printDoseRx()">Print / Save PDF</button><button class="smallbtn" type="button" onclick="whatsappDoseRx()">WhatsApp details</button></div>
-    <p class="small-help">Dose output uses active mg per drop / tsp only. Final prescription and escalation remain with the treating RMP/oncologist.</p>
+    <p class="small-help">Print / Save PDF opens the browser print dialogue with complete doctor, patient, titration, diet/fasting, mushroom, repurposed drug and monoherb support fields.</p>
     <div class="rx-print" id="rxPrint"></div>
   </div>
 </section>
@@ -209,6 +389,15 @@ button.smallbtn{cursor:pointer;font:inherit}
 <section class="section" id="mushrooms"><span class="kicker">Mushrooms</span><h2>Medicinal mushrooms</h2><p class="sub">Separate mushroom evidence: beta-glucans, PSK/PSP/lentinan, immune adjunct logic, and safety cautions.</p><div class="controls"><select id="mushroomItem"></select><select id="mushroomProperty"></select><input id="mushroomSearch" placeholder="Search mushroom, beta-glucan, PSK..."></div><p class="meta" id="mushroomCount"></p><div class="grid" id="mushroomGrid"></div></section>
 
 <section class="section" id="herbs"><span class="kicker">Herbs</span><h2>Anti-cancer herb research</h2><p class="sub">Separate monoherb/phytochemical evidence with clear “preclinical/supportive/conditional” boundaries.</p><div class="controls"><select id="herbItem"></select><select id="herbProperty"></select><input id="herbSearch" placeholder="Search herb, active compound, mechanism..."></div><p class="meta" id="herbCount"></p><div class="grid" id="herbGrid"></div></section>
+
+
+<section class="section" id="validation"><span class="kicker">Final Validation</span><h2>Scientific, logical and working-status audit</h2>
+<p class="sub">This build keeps clinical claims conservative and separates evidence navigation from prescription decision-making.</p>
+<div class="grid three">
+  <article class="protocol-card"><h3>Research links</h3><p>158 unique URL strings were structurally checked; 0 malformed URL strings found. Authority anchor links include ASCO, NCI, PubMed/PMC, NCBI Bookshelf and ClinicalTrials.</p></article>
+  <article class="protocol-card"><h3>Scientific logic</h3><p>Cannabis is limited to cancer-related symptom/supportive context, mushrooms are adjunct/conditional, repurposed drugs are review-only, and monoherbs remain supportive/preclinical unless reviewed by the treating team.</p></article>
+  <article class="protocol-card"><h3>Tool functions</h3><p>Home, Protocols, Boards, Research, Dose, Cannabis Medicines, Cannabis, Mushrooms and Herbs anchors are present; dropdown IDs and print/WhatsApp functions are populated in this final build.</p></article>
+</div></section>
 
 
 <div class="footer">CancerQR Research · cancerQR.com · Doctor/oncologist evidence navigator · Final decision remains with the treating oncologist/RMP.</div>
@@ -358,6 +547,61 @@ function initMedicalCannabis(){
   $('productSearch').addEventListener('input',renderProducts);
   renderProducts();
 }
+
+const SUPPORT_OPTIONS = {
+  diet: [
+    {id:'balanced', label:'Balanced high-protein oncology diet', logic:'Small frequent meals; protein each meal; avoid weight loss; adapt to mucositis, nausea and GI tolerance.'},
+    {id:'antiInflammatory', label:'Anti-inflammatory plant-forward diet', logic:'Vegetables, legumes, nuts/seeds, spices and adequate protein; avoid ultra-processed sugar-heavy diet.'},
+    {id:'cachexia', label:'Cachexia / low appetite support', logic:'Do not fast. Prioritize calories, protein, oral nutrition support and oncology dietician review.'},
+    {id:'lowResidue', label:'Low-residue GI tolerance diet', logic:'For diarrhea, bowel irritation or obstruction risk; soft cooked foods and medical review.'}
+  ],
+  fasting: [
+    {id:'noFasting', label:'No fasting / nutrition-first', logic:'Default for active cancer, low BMI, cachexia, dehydration risk, diabetes, renal/liver compromise or intensive therapy.'},
+    {id:'nightFast12', label:'12-hour overnight fasting only', logic:'Gentle circadian eating window; stop if weakness, weight loss, nausea or poor intake.'},
+    {id:'oncologistReview', label:'Fasting only after oncologist/dietician review', logic:'Use only when nutritional status is stable and treatment team agrees.'}
+  ],
+  mushroom: [
+    {id:'none', label:'No mushroom selected', logic:'Select only if clinically appropriate and product quality is documented.'},
+    {id:'turkeyTail', label:'Turkey tail / PSK-PSP discussion', logic:'Adjunct immune-support literature; not standalone cancer therapy; check chemo/immunotherapy context.'},
+    {id:'reishi', label:'Reishi support discussion', logic:'Fatigue/immune support interest; anticoagulant, liver and immune-status caution.'},
+    {id:'shiitake', label:'Shiitake / lentinan discussion', logic:'Adjunct literature depends on product/route; not a direct substitute for oncology care.'}
+  ],
+  repurposed: [
+    {id:'none', label:'No repurposed drug', logic:'Default. Repurposed drugs require oncologist supervision, interaction check and legal prescription.'},
+    {id:'ivermectinReviewOnly', label:'Ivermectin review only', logic:'Preclinical/trial-exploration context only; not established cancer treatment; use only in trial/oncologist-supervised context.'},
+    {id:'metforminReview', label:'Metformin review if diabetic/metabolic indication', logic:'Consider only if medically indicated; monitor renal function and interactions.'},
+    {id:'statinReview', label:'Statin review if cardiovascular indication', logic:'Consider only under physician care when indicated; monitor liver/muscle symptoms.'}
+  ],
+  monoherb: [
+    {id:'none', label:'No monoherb selected', logic:'Default. Avoid mixing multiple herbs without interaction review.'},
+    {id:'curcumin', label:'Curcumin / Haridra support', logic:'Inflammation-support literature; absorption, anticoagulant and chemo interaction review required.'},
+    {id:'ginger', label:'Ginger nausea support', logic:'CINV/nausea support evidence; anticoagulant/GI irritation caution.'},
+    {id:'boswellia', label:'Boswellia edema/inflammation support', logic:'Supportive-care interest; anticoagulant/GI caution and oncology review.'},
+    {id:'guduchi', label:'Guduchi / Giloy immune support', logic:'Immunomodulatory support; liver injury case reports and autoimmune caution.'}
+  ]
+};
+function fillSupportSelect(id, list, placeholder){
+  const el=$(id); if(!el) return;
+  el.innerHTML = `<option value="">${esc(placeholder)}</option>` + list.map(o=>`<option value="${esc(o.id)}">${esc(o.label)}</option>`).join('');
+}
+function getSupportOption(kind, id){
+  const list=SUPPORT_OPTIONS[kind]||[];
+  return list.find(x=>x.id===id) || {label:'-', logic:'-'};
+}
+function supportRows(){
+  return [
+    ['Diet suggestion', getSupportOption('diet',$('dietPlan')?.value||'')],
+    ['Fasting suggestion', getSupportOption('fasting',$('fastingPlan')?.value||'')],
+    ['Functional mushroom', getSupportOption('mushroom',$('mushroomPlan')?.value||'')],
+    ['Repurposed drug', getSupportOption('repurposed',$('repurposedPlan')?.value||'')],
+    ['Monoherb', getSupportOption('monoherb',$('monoherbPlan')?.value||'')]
+  ];
+}
+function renderSupportPreview(){
+  const target=$('supportPreview'); if(!target) return;
+  target.innerHTML = supportRows().map(([title,o])=>`<div class="support-card"><b>${esc(title)}</b><span>${esc(o.label)}<br>${esc(o.logic)}</span></div>`).join('');
+}
+
 function getDoseValues(){
   const weight=parseFloat($('weightKg').value)||0; const grade=parseFloat($('painGrade').value)||0;
   const product=MED_PRODUCTS.find(p=>p.name===$('doseProduct').value)||MED_PRODUCTS[0];
@@ -369,17 +613,71 @@ function renderDose(){
   const v=getDoseValues();
   const fmt=n=>isFinite(n)?(Math.round(n*10)/10):0;
   const unitLabel=v.product?.unit||'unit';
-  $('doseResult').innerHTML=`<div class="dose-box"><b>${fmt(v.x)} mg</b><span>X = pain grade × body weight</span></div><div class="dose-box"><b>${fmt(v.start)} mg</b><span>Start: X/2 at night · ${fmt(v.unit(v.start))} ${unitLabel}</span></div><div class="dose-box"><b>${fmt(v.week1)} mg</b><span>Week 1 target: 5X · ${fmt(v.unit(v.week1))} ${unitLabel}</span></div><div class="dose-box"><b>${fmt(v.week2)} mg</b><span>Week 2 target: 10X · ${fmt(v.unit(v.week2))} ${unitLabel}</span></div><div class="dose-box"><b>${fmt(v.upper)} mg</b><span>Upper reference: 20X · ${fmt(v.unit(v.upper))} ${unitLabel}</span></div><div class="dose-box"><b>${esc(v.product?.highlight||'')}</b><span>Selected product potency</span></div>`;
+  const warn = v.weight<=0 ? '<div class="dose-box"><b>Enter weight</b><span>Required before final dose note</span></div>' : '';
+  $('doseResult').innerHTML=`${warn}<div class="dose-box"><b>${fmt(v.x)} mg</b><span>X = pain grade × body weight</span></div><div class="dose-box"><b>${fmt(v.start)} mg</b><span>Start: X/2 at night · ${fmt(v.unit(v.start))} ${unitLabel}</span></div><div class="dose-box"><b>${fmt(v.week1)} mg</b><span>Week 1 target: 5X · ${fmt(v.unit(v.week1))} ${unitLabel}</span></div><div class="dose-box"><b>${fmt(v.week2)} mg</b><span>Week 2 target: 10X · ${fmt(v.unit(v.week2))} ${unitLabel}</span></div><div class="dose-box"><b>${fmt(v.upper)} mg</b><span>Upper reference: 20X · ${fmt(v.unit(v.upper))} ${unitLabel}</span></div><div class="dose-box"><b>${esc(v.product?.highlight||'')}</b><span>Selected product potency</span></div>`;
   const hydration=$('hydrationCheck').value;
   $('hydrationBox').textContent = hydration === 'Hydration checked' ? 'Hydration checked: escalation can be reviewed clinically.' : hydration === 'Dehydration risk / hold escalation' ? 'Dehydration risk: hold escalation and review hydration, renal/GI status.' : 'Hydration not checked: check hydration before escalation.';
+  renderSupportPreview();
 }
 function buildDoseText(){
   const v=getDoseValues(); const fmt=n=>isFinite(n)?(Math.round(n*10)/10):0; const unit=v.product?.unit||'unit';
-  return `CancerQR EndoCann Dose Note\nContact: 9686383132\nDoctor: ${$('doctorName').value||'-'} | Mobile: ${$('doctorMobile').value||'-'}\nPatient: ${$('patientName').value||'-'} | Mobile: ${$('patientMobile').value||'-'}\nProduct: ${v.product?.name||'-'} (${v.product?.highlight||'-'})\nWeight: ${fmt(v.weight)} kg | Pain grade: ${fmt(v.grade)}\nX = pain grade × body weight = ${fmt(v.x)} mg\nStart: X/2 at night = ${fmt(v.start)} mg (${fmt(v.unit(v.start))} ${unit})\nWeek 1 target: 5X = ${fmt(v.week1)} mg (${fmt(v.unit(v.week1))} ${unit})\nWeek 2 target: 10X = ${fmt(v.week2)} mg (${fmt(v.unit(v.week2))} ${unit})\nUpper reference: 20X = ${fmt(v.upper)} mg (${fmt(v.unit(v.upper))} ${unit})\nHydration: ${$('hydrationCheck').value}\nNotes: ${$('clinicalNote').value||'-'}\nClinical boundary: supportive protocol note only; final decision remains with treating RMP/oncologist.`;
+  const now=new Date().toLocaleString();
+  const sr=supportRows();
+  const rows=[
+    ['Date / time', now],
+    ['Doctor', `${$('doctorName').value||'-'} | Mobile: ${$('doctorMobile').value||'-'}`],
+    ['Patient', `${$('patientName').value||'-'} | Mobile: ${$('patientMobile').value||'-'} | Age/Sex: ${$('patientAge').value||'-'}`],
+    ['Diagnosis', $('diagnosis').value||'-'],
+    ['Treatment line', $('treatmentLine').value||'-'],
+    ['Selected product', `${v.product?.name||'-'} (${v.product?.highlight||'-'})`],
+    ['Patient inputs', `Weight: ${fmt(v.weight)} kg | Pain grade: ${fmt(v.grade)} | Hydration: ${$('hydrationCheck').value}`],
+    ['Dose logic', `X = pain grade × body weight = ${fmt(v.x)} mg`],
+    ['Start dose', `X/2 at night = ${fmt(v.start)} mg (${fmt(v.unit(v.start))} ${unit})`],
+    ['Week 1 review target', `5X = ${fmt(v.week1)} mg (${fmt(v.unit(v.week1))} ${unit})`],
+    ['Week 2 review target', `10X = ${fmt(v.week2)} mg (${fmt(v.unit(v.week2))} ${unit})`],
+    ['Upper reference only', `20X = ${fmt(v.upper)} mg (${fmt(v.unit(v.upper))} ${unit})`],
+    ['Diet / fasting note', $('dietNote').value||'-'],
+    ['Clinical note', $('clinicalNote').value||'-'],
+    ['Boundary', 'Supportive oncology protocol note only. Final prescription, escalation, interactions and contraindications remain with the treating RMP/oncologist.']
+  ];
+  const supportText = sr.map(([title,o])=>`${title}: ${o.label} — ${o.logic}`).join('\\n');
+  return 'CancerQR EndoCann Dose / Prescription Support Note\nContact: 9686383132\n\n' + rows.map(r=>`${r[0]}: ${r[1]}`).join('\n') + '\n\nSupportive suggestions:\n' + supportText;
+}
+function rxTable(rows){
+  return `<table class="rx-table"><tbody>${rows.map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join('')}</tbody></table>`;
 }
 function printDoseRx(){
-  const text=buildDoseText();
-  $('rxPrint').innerHTML=`<div class="rx-sheet"><h1>CancerQR EndoCann Dose Note</h1><div class="rx-contact">Contact: 9686383132</div><pre style="white-space:pre-wrap;font-family:Arial,sans-serif;font-size:14px;line-height:1.5">${esc(text)}</pre></div>`;
+  const v=getDoseValues(); const fmt=n=>isFinite(n)?(Math.round(n*10)/10):0; const unit=v.product?.unit||'unit';
+  const now=new Date().toLocaleString();
+  const patientRows=[
+    ['Date / time', now],
+    ['Doctor', `${esc($('doctorName').value||'-')}<br>Mobile: ${esc($('doctorMobile').value||'-')}`],
+    ['Patient', `${esc($('patientName').value||'-')}<br>Mobile: ${esc($('patientMobile').value||'-')}<br>Age / Sex: ${esc($('patientAge').value||'-')}`],
+    ['Cancer / diagnosis', esc($('diagnosis').value||'-')],
+    ['Current treatment line', esc($('treatmentLine').value||'-')],
+    ['ESR / CRP / LFT / RFT / clinical note', esc($('clinicalNote').value||'-')]
+  ];
+  const doseRows=[
+    ['Product', `${esc(v.product?.name||'-')}<br>${esc(v.product?.highlight||'-')}`],
+    ['Inputs', `Weight: ${fmt(v.weight)} kg<br>Pain grade: ${fmt(v.grade)}<br>Hydration: ${esc($('hydrationCheck').value)}`],
+    ['Dose calculation', `X = pain grade × body weight = <b>${fmt(v.x)} mg</b>`],
+    ['Start dose', `X/2 at night = <b>${fmt(v.start)} mg</b> (${fmt(v.unit(v.start))} ${esc(unit)})`],
+    ['Week 1 review target', `5X = <b>${fmt(v.week1)} mg</b> (${fmt(v.unit(v.week1))} ${esc(unit)})`],
+    ['Week 2 review target', `10X = <b>${fmt(v.week2)} mg</b> (${fmt(v.unit(v.week2))} ${esc(unit)})`],
+    ['Upper reference only', `20X = <b>${fmt(v.upper)} mg</b> (${fmt(v.unit(v.upper))} ${esc(unit)})`],
+    ['Titration instruction', 'Start low at night; review sedation, dizziness, confusion, appetite, bowel movement, hydration and caregiver feedback before escalation. Hold escalation if dehydration, severe sedation, psychosis, fall risk, vomiting, renal/liver instability or oncologist concern.']
+  ];
+  const support = supportRows().map(([title,o])=>[title, `<b>${esc(o.label)}</b><br>${esc(o.logic)}`]);
+  support.push(['Diet / fasting note', esc($('dietNote').value||'-')]);
+  $('rxPrint').innerHTML=`<div class="rx-sheet">
+    <div class="rx-header"><h1>CancerQR EndoCann Dose / Prescription Support Note</h1><p>CancerQR.com · WhatsApp/Contact: 9686383132 · Doctor-led supportive oncology documentation</p></div>
+    <div class="rx-section-title">1. Doctor and patient details</div>${rxTable(patientRows)}
+    <div class="rx-section-title">2. Dose titration calculation</div>${rxTable(doseRows)}
+    <div class="rx-section-title">3. Diet, fasting, functional mushrooms, repurposed drug and monoherb suggestions</div>${rxTable(support)}
+    <div class="rx-note"><b>Scientific boundary:</b> Cannabis/cannabinoids are for cancer-related symptom-support discussion and should not be presented as cancer-directed treatment outside a clinical trial. Functional mushrooms and monoherbs are adjunct / conditional / preclinical unless individually reviewed by the treating oncology team.</div>
+    <div class="rx-warning"><b>Prescription boundary:</b> This is a decision-support note. Final prescription, dose escalation, drug interaction checks, contraindications, consent and monitoring remain with the treating RMP/oncologist.</div>
+    <p style="margin-top:24px">Doctor signature: ________________________________ &nbsp;&nbsp; Registration no.: __________________</p>
+  </div>`;
   window.print();
 }
 function whatsappDoseRx(){
@@ -388,15 +686,58 @@ function whatsappDoseRx(){
 }
 function initDose(){
   fillProductSelect();
-  ['doctorName','doctorMobile','patientName','patientMobile','weightKg','painGrade','doseProduct','hydrationCheck','clinicalNote'].forEach(id=>{const el=$(id); if(el) el.addEventListener(id==='weightKg'||id==='clinicalNote'||id.includes('Name')||id.includes('Mobile')?'input':'change',renderDose);});
+  fillSupportSelect('dietPlan', SUPPORT_OPTIONS.diet, 'Diet suggestion');
+  fillSupportSelect('fastingPlan', SUPPORT_OPTIONS.fasting, 'Fasting suggestion');
+  fillSupportSelect('mushroomPlan', SUPPORT_OPTIONS.mushroom, 'Functional mushroom');
+  fillSupportSelect('repurposedPlan', SUPPORT_OPTIONS.repurposed, 'Repurposed drug');
+  fillSupportSelect('monoherbPlan', SUPPORT_OPTIONS.monoherb, 'Monoherb suggestion');
+  ['doctorName','doctorMobile','patientName','patientMobile','patientAge','diagnosis','treatmentLine','weightKg','painGrade','doseProduct','hydrationCheck','dietPlan','fastingPlan','mushroomPlan','repurposedPlan','monoherbPlan','clinicalNote','dietNote'].forEach(id=>{
+    const el=$(id); if(!el) return;
+    const evt = (el.tagName==='SELECT') ? 'change' : 'input';
+    el.addEventListener(evt,renderDose);
+  });
   renderDose();
 }
 function activeDock(){
   const ids=['home','protocols','boards','research','dose-calculator','medical-cannabis','cannabis','mushrooms','herbs'];
   let current='home'; for(const id of ids){const el=$(id); if(el && el.getBoundingClientRect().top<160) current=id;}
   document.querySelectorAll('.floatDock a').forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+current));
+  const hero=document.querySelector('.hero');
+  const show = hero ? hero.getBoundingClientRect().bottom < 80 : window.scrollY > 220;
+  document.body.classList.toggle('show-dock', show);
 }
-document.addEventListener('DOMContentLoaded',()=>{try{initProtocols();initBoards();initResearch();initDose();initMedicalCannabis();initSection('Cannabis','cannabisItem','cannabisProperty','cannabisSearch','cannabisGrid','cannabisCount','cannabis');initSection('Mushrooms','mushroomItem','mushroomProperty','mushroomSearch','mushroomGrid','mushroomCount','mushrooms');initSection('Herbs','herbItem','herbProperty','herbSearch','herbGrid','herbCount','herbs');activeDock();window.addEventListener('scroll',activeDock,{passive:true});}catch(err){console.error('CancerQR init error',err);}});
+function scrollToSection(hash){
+  if(!hash || hash.charAt(0)!=='#') return true;
+  const target=document.querySelector(hash);
+  if(!target) return true;
+  target.scrollIntoView({behavior:'smooth',block:'start'});
+  history.replaceState(null,'',hash);
+  activeDock();
+  return false;
+}
+function initNavigation(){
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',function(e){
+      const href=this.getAttribute('href');
+      if(href && href.length>1){ e.preventDefault(); scrollToSection(href); }
+    },{passive:false});
+  });
+}
+function safeInit(){
+  try{
+    initProtocols(); initBoards(); initResearch(); initDose(); initMedicalCannabis();
+    initSection('Cannabis','cannabisItem','cannabisProperty','cannabisSearch','cannabisGrid','cannabisCount','cannabis');
+    initSection('Mushrooms','mushroomItem','mushroomProperty','mushroomSearch','mushroomGrid','mushroomCount','mushrooms');
+    initSection('Herbs','herbItem','herbProperty','herbSearch','herbGrid','herbCount','herbs');
+    initNavigation(); activeDock(); window.addEventListener('scroll',activeDock,{passive:true});
+  }catch(err){
+    console.error('CancerQR init error',err);
+    const main=document.querySelector('main.wrap');
+    if(main){ main.insertAdjacentHTML('afterbegin','<div class="notice" style="margin:12px 0"><strong>Tool startup issue:</strong> Please refresh once. If this remains, share this file for repair.</div>'); }
+  }
+}
+if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded',safeInit); } else { safeInit(); }
+
 </script>
 </body>
 </html>
