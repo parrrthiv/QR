@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>CancerQR — Digital Tumor Board & Oncology Care Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f7fb;--card:#fff;--ink:#0d1b2a;--muted:#5d6f82;--line:#dce6ef;
+  --navy:#062a46;--blue:#0b6fbd;--teal:#08a69a;--green:#0d9b62;--amber:#e58a00;--red:#d74242;
+  --softblue:#eaf5ff;--softteal:#e7fbf8;--softred:#fff0f0;--shadow:0 16px 42px rgba(6,42,70,.12);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink)}
+button,input,select,textarea{font:inherit}
+.app{max-width:460px;margin:auto;min-height:100vh;background:linear-gradient(180deg,#f8fbff 0,#edf5fb 100%);position:relative;padding-bottom:92px}
+.top{
+  position:sticky;top:0;z-index:50;background:linear-gradient(135deg,#051e33,#064b79 55%,#079b91);
+  color:white;padding:14px 14px 12px;border-bottom-left-radius:24px;border-bottom-right-radius:24px;box-shadow:var(--shadow)
+}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:42px;height:42px;border-radius:14px;background:rgba(255,255,255,.17);display:grid;place-items:center;font-weight:900;font-size:20px}
+.brand h1{font-size:20px;margin:0;letter-spacing:-.4px}.brand p{font-size:12px;margin:2px 0 0;color:#d8f8ff}
+.toprow{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.pill{border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.14);color:white;border-radius:999px;padding:8px 10px;font-size:12px;font-weight:700}
+.menu{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.menu button,.bottom button,.quick button,.login-card button,.primary,.secondary{
+  border:0;border-radius:14px;padding:10px 8px;font-weight:800;cursor:pointer;transition:.15s transform,.15s opacity
+}
+button:active{transform:scale(.97)}
+.menu button{background:rgba(255,255,255,.13);color:white;font-size:11px;border:1px solid rgba(255,255,255,.18)}
+.menu button.active{background:white;color:var(--navy)}
+.section{display:none;padding:14px}.section.active{display:block}
+.hero{background:white;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-top:12px;overflow:hidden;position:relative}
+.hero:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;background:linear-gradient(135deg,#d4fbff,#eaf5ff);right:-70px;top:-70px;z-index:0}
+.hero>*{position:relative;z-index:1}
+.kicker{font-size:12px;font-weight:900;color:var(--blue);letter-spacing:.08em;text-transform:uppercase}
+.hero h2{font-size:28px;line-height:1.03;letter-spacing:-1.2px;margin:8px 0}
+.hero p{color:var(--muted);line-height:1.5;margin:8px 0 0;font-size:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.card{background:white;border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 10px 24px rgba(6,42,70,.06);margin:10px 0}
+.card h3{margin:0 0 8px;font-size:17px}.card p{margin:6px 0;color:var(--muted);font-size:13px;line-height:1.42}
+.stat{background:linear-gradient(180deg,#fff,#f6fbff);border:1px solid var(--line);border-radius:18px;padding:12px}
+.stat b{font-size:22px}.stat span{display:block;color:var(--muted);font-size:11px;font-weight:700;margin-top:4px}
+.primary{background:linear-gradient(135deg,var(--blue),var(--teal));color:white;width:100%;box-shadow:0 12px 26px rgba(11,111,189,.24)}
+.secondary{background:#eef6fb;color:var(--navy);border:1px solid var(--line);width:100%}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+.quick button{background:#f0f7fd;color:#0e4771;border:1px solid #d8eaf7}
+.login-card{background:white;border-radius:20px;padding:14px;border:1px solid var(--line);box-shadow:0 12px 28px rgba(6,42,70,.07)}
+.login-card button{width:100%;color:white;background:var(--navy);margin-top:10px}
+.input{width:100%;border:1px solid var(--line);background:#f8fbfd;border-radius:14px;padding:12px;margin:6px 0 10px}
+.role{display:flex;gap:8px;overflow:auto;padding-bottom:4px}.role button{white-space:nowrap;background:#eef6fb;color:#16425f;border:1px solid #d7e6ef}
+.role button.active{background:var(--navy);color:white}
+.dash-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.avatar{width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,#0b6fbd,#08a69a);color:white;display:grid;place-items:center;font-weight:900}
+.tag{display:inline-flex;border-radius:999px;padding:5px 8px;font-size:11px;font-weight:900}
+.green{background:#e7f8ef;color:#087342}.blue{background:#eaf5ff;color:#075a9a}.amber{background:#fff4df;color:#986100}.red{background:#fff0f0;color:#a82727}
+.timeline{position:relative;margin-left:8px}.timeline:before{content:"";position:absolute;left:9px;top:5px;bottom:5px;width:2px;background:#dce6ef}
+.step{position:relative;padding-left:32px;margin:12px 0}.step:before{content:"";position:absolute;left:2px;top:1px;width:16px;height:16px;border-radius:50%;background:var(--teal);border:3px solid white;box-shadow:0 0 0 1px #cbe8e5}
+.step b{font-size:13px}.step p{font-size:12px;margin:3px 0}
+.table{width:100%;border-collapse:separate;border-spacing:0 8px}.table td,.table th{text-align:left;font-size:12px;padding:9px;background:#f8fbfd}.table tr td:first-child,.table th:first-child{border-radius:12px 0 0 12px}.table tr td:last-child,.table th:last-child{border-radius:0 12px 12px 0}
+.service{display:flex;gap:10px;align-items:flex-start}.icon{width:40px;height:40px;border-radius:14px;background:var(--softblue);display:grid;place-items:center;font-size:19px;flex:0 0 40px}
+.report{background:#fbfdff;border:1px dashed #b9d4e8;border-radius:18px;padding:12px;font-size:12px;line-height:1.48}
+.bottom{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(460px,100%);z-index:60;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding:8px 7px calc(8px + env(safe-area-inset-bottom))}
+.bottom button{background:transparent;color:#536879;font-size:10px;padding:7px 2px}.bottom b{display:block;font-size:18px}.bottom button.active{color:var(--blue);background:#edf7ff}
+.modal{display:none;position:fixed;inset:0;background:rgba(6,27,43,.54);z-index:100;padding:18px;align-items:flex-end}
+.modal.active{display:flex}.sheet{background:white;width:100%;max-width:460px;margin:auto;border-radius:24px 24px 18px 18px;padding:16px;max-height:88vh;overflow:auto}
+.close{float:right;border:0;background:#eef6fb;border-radius:12px;padding:8px 10px}
+.printbar{display:flex;gap:8px}.printbar button{flex:1}
+@media(min-width:800px){body{background:#dce9f3}.app{box-shadow:0 0 0 1px #dbe7f0,0 30px 80px rgba(0,0,0,.12)}}
+@media print{.top,.bottom,.quick,.primary,.secondary,.close{display:none!important}.section{display:block}.app{max-width:none;background:white}.card,.hero{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="toprow">
+      <div class="brand"><div class="logo">QR</div><div><h1>CancerQR</h1><p>Digital Tumor Board • Referral • Follow-up</p></div></div>
+      <button class="pill" onclick="openModal('help')">Help</button>
+    </div>
+    <div class="menu">
+      <button class="active" onclick="show('home',this)">Home</button>
+      <button onclick="show('login',this)">Login</button>
+      <button onclick="show('services',this)">Services</button>
+      <button onclick="show('reports',this)">Reports</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="section active">
+      <div class="hero">
+        <div class="kicker">Cancer care access layer for Karnataka</div>
+        <h2>One patient timeline. One tumor board. One follow-up system.</h2>
+        <p>QR/WhatsApp intake → AI case summary → specialist tumor board → e-prescription/referral → palliative and survivorship monitoring.</p>
+        <div class="quick">
+          <button onclick="showById('login')">Patient Login</button>
+          <button onclick="showById('board')">Tumor Board</button>
+          <button onclick="showById('doctor')">Doctor Desk</button>
+          <button onclick="showById('admin')">Govt/Admin</button>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="stat"><b>30 min</b><span>Case summary target</span></div>
+        <div class="stat"><b>MDT</b><span>Medical • Surgical • Radiation</span></div>
+        <div class="stat"><b>PHC</b><span>Referral funnel ready</span></div>
+        <div class="stat"><b>QoL</b><span>Pain, sleep, appetite tracking</span></div>
+      </div>
+      <div class="card">
+        <h3>Business flow</h3>
+        <div class="timeline">
+          <div class="step"><b>1. Patient / PHC scans QR</b><p>OTP login, report upload, symptoms, location and preferred language.</p></div>
+          <div class="step"><b>2. CancerQR prepares case</b><p>AI chronology, missing report checklist, red flags and stage-ready summary.</p></div>
+          <div class="step"><b>3. Doctor validates</b><p>Physician confirms diagnosis, investigations, treatment line and urgency.</p></div>
+          <div class="step"><b>4. Tumor board opinion</b><p>Medical, surgical, radiation, pathology, radiology, palliative, diet and supportive care.</p></div>
+          <div class="step"><b>5. Follow-up & reports</b><p>WhatsApp reminders, pain/QoL monitoring, medicine support and outcome analytics.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="login" class="section">
+      <div class="card">
+        <h3>Select login</h3>
+        <div class="role">
+          <button class="active" onclick="setRole('patient',this)">Patient</button>
+          <button onclick="setRole('doctor',this)">Doctor</button>
+          <button onclick="setRole('board',this)">Tumor Board</button>
+          <button onclick="setRole('admin',this)">Admin</button>
+          <button onclick="setRole('service',this)">Clinical Services</button>
+        </div>
+      </div>
+      <div class="login-card">
+        <h3 id="roleTitle">Patient OTP Login</h3>
+        <input class="input" id="mobile" placeholder="Mobile / Email / Doctor ID" value="+91 9686383132">
+        <input class="input" id="otp" placeholder="OTP / Access code" value="123456">
+        <button onclick="enterDashboard()">Enter Dashboard</button>
+        <p style="font-size:12px;color:var(--muted)">Demo access: any mobile and OTP opens the selected dashboard.</p>
+      </div>
+    </section>
+
+    <section id="patient" class="section">
+      <div class="card dash-head">
+        <div style="display:flex;gap:10px;align-items:center"><div class="avatar">P</div><div><h3 style="margin:0">Patient Dashboard</h3><p>Case ID: CQR-KA-2026-1047</p></div></div>
+        <span class="tag amber">Board Pending</span>
+      </div>
+      <div class="grid2">
+        <button class="primary" onclick="openModal('upload')">Upload Reports</button>
+        <button class="secondary" onclick="openModal('whatsapp')">WhatsApp Share</button>
+      </div>
+      <div class="card">
+        <h3>My cancer care timeline</h3>
+        <div class="timeline">
+          <div class="step"><b>Symptoms added</b><p>Pain 7/10, weight loss, appetite low.</p></div>
+          <div class="step"><b>Reports uploaded</b><p>Biopsy, CT, CBC, LFT, creatinine.</p></div>
+          <div class="step"><b>AI summary generated</b><p>Probable GI malignancy. Missing: CEA, PET-CT, histology markers.</p></div>
+          <div class="step"><b>Board review scheduled</b><p>Medical + surgical + palliative oncology.</p></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Today’s monitoring</h3>
+        <div class="grid3">
+          <div class="stat"><b>7</b><span>Pain</span></div>
+          <div class="stat"><b>Low</b><span>Appetite</span></div>
+          <div class="stat"><b>4h</b><span>Sleep</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="doctor" class="section">
+      <div class="card dash-head">
+        <div style="display:flex;gap:10px;align-items:center"><div class="avatar">Dr</div><div><h3 style="margin:0">Physician Desk</h3><p>Validated cases, prescriptions, referrals</p></div></div>
+        <span class="tag green">12 Active</span>
+      </div>
+      <div class="grid2">
+        <button class="primary" onclick="openModal('case')">Open Case</button>
+        <button class="secondary" onclick="printReport()">Print Summary</button>
+      </div>
+      <div class="card">
+        <h3>Priority queue</h3>
+        <table class="table">
+          <tr><th>Patient</th><th>Status</th><th>Action</th></tr>
+          <tr><td>CQR-1047</td><td><span class="tag red">Urgent</span></td><td>Validate</td></tr>
+          <tr><td>CQR-1039</td><td><span class="tag amber">Reports missing</span></td><td>Request</td></tr>
+          <tr><td>CQR-1028</td><td><span class="tag green">Follow-up</span></td><td>Review</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Clinical decision support</h3>
+        <p>Diagnosis summary, stage checklist, guideline prompts, red flags, supportive care options and referral note auto-draft.</p>
+        <div class="quick">
+          <button onclick="openModal('prescription')">eRx Draft</button>
+          <button onclick="openModal('referral')">Referral Note</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="board" class="section">
+      <div class="card dash-head">
+        <div style="display:flex;gap:10px;align-items:center"><div class="avatar">MDT</div><div><h3 style="margin:0">Tumor Board</h3><p>Specialist review and consensus</p></div></div>
+        <span class="tag blue">Live Board</span>
+      </div>
+      <div class="card">
+        <h3>Board panel</h3>
+        <div class="grid2">
+          <div class="stat"><b>MO</b><span>Medical Oncology</span></div>
+          <div class="stat"><b>SO</b><span>Surgical Oncology</span></div>
+          <div class="stat"><b>RO</b><span>Radiation Oncology</span></div>
+          <div class="stat"><b>PC</b><span>Palliative Care</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Consensus builder</h3>
+        <textarea class="input" rows="5">Diagnosis: Suspected GI malignancy. Treatment line pending histology markers. Recommendation: complete staging, optimize nutrition, pain control, review for surgery/chemo/radiation sequence.</textarea>
+        <button class="primary" onclick="toast('Board opinion saved')">Save Board Opinion</button>
+      </div>
+      <div class="card">
+        <h3>Case routing</h3>
+        <table class="table">
+          <tr><td>Medical Oncology</td><td><span class="tag green">Reviewed</span></td></tr>
+          <tr><td>Surgical Oncology</td><td><span class="tag amber">Pending</span></td></tr>
+          <tr><td>Radiation Oncology</td><td><span class="tag blue">Not required yet</span></td></tr>
+          <tr><td>Palliative</td><td><span class="tag green">Active</span></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="card"><h3>Clinical services</h3><p>Patient-facing and doctor-facing services for complete oncology coordination.</p></div>
+      <div class="card service"><div class="icon">📄</div><div><h3>AI Case Summary</h3><p>Turns scattered PDFs/images into a clean clinical chronology and missing-investigation checklist.</p></div></div>
+      <div class="card service"><div class="icon">👨‍⚕️</div><div><h3>Expert Opinion</h3><p>Specialist oncology review with documented recommendation and follow-up plan.</p></div></div>
+      <div class="card service"><div class="icon">🧬</div><div><h3>Tumor Board</h3><p>Medical, surgical, radiation, pathology, radiology, palliative, diet and supportive care board.</p></div></div>
+      <div class="card service"><div class="icon">🌿</div><div><h3>Supportive Oncology</h3><p>Pain, appetite, sleep, nausea, nutrition, palliative monitoring and physician-supervised supportive care.</p></div></div>
+      <div class="card service"><div class="icon">🚑</div><div><h3>Referral Coordination</h3><p>PHC to district hospital to cancer centre with QR-linked referral note and report packet.</p></div></div>
+    </section>
+
+    <section id="reports" class="section">
+      <div class="card">
+        <h3>Reports & analytics</h3>
+        <div class="grid2">
+          <div class="stat"><b>248</b><span>Cases registered</span></div>
+          <div class="stat"><b>86%</b><span>Reports complete</span></div>
+          <div class="stat"><b>42</b><span>Board reviews</span></div>
+          <div class="stat"><b>71%</b><span>Follow-up compliance</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Government / hospital dashboard</h3>
+        <table class="table">
+          <tr><th>District</th><th>Cases</th><th>Referral</th></tr>
+          <tr><td>Bengaluru</td><td>82</td><td>KMIO/BMCRI</td></tr>
+          <tr><td>Hubballi-Dharwad</td><td>48</td><td>KIMS/KCTRI</td></tr>
+          <tr><td>Mysuru</td><td>39</td><td>MMCRI/KR</td></tr>
+          <tr><td>Belagavi</td><td>31</td><td>BIMS</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Printable case summary</h3>
+        <div class="report" id="printArea">
+          <b>CancerQR Case Summary</b><br>
+          Case ID: CQR-KA-2026-1047<br>
+          Patient: Demo Patient | Age: 54 | District: Hassan<br>
+          Primary concern: Suspected GI malignancy with pain, appetite loss and weight loss.<br><br>
+          Reports received: Biopsy, CT abdomen, CBC, LFT, RFT.<br>
+          Missing: PET-CT / staging scan, tumor markers, IHC/histology markers.<br><br>
+          MDT recommendation: Complete staging, optimize nutrition, initiate symptom control, route to medical + surgical oncology review. Palliative team to monitor pain/sleep/appetite weekly.<br><br>
+          Generated by CancerQR Digital Tumor Board Platform.
+        </div>
+        <div class="printbar" style="margin-top:10px">
+          <button class="primary" onclick="printReport()">Print / Save PDF</button>
+          <button class="secondary" onclick="openModal('whatsapp')">Share</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="admin" class="section">
+      <div class="card dash-head">
+        <div style="display:flex;gap:10px;align-items:center"><div class="avatar">KA</div><div><h3 style="margin:0">Admin / Govt Dashboard</h3><p>Deployment, KPIs, hospitals, PHC funnel</p></div></div>
+        <span class="tag green">Pilot Ready</span>
+      </div>
+      <div class="grid2">
+        <div class="stat"><b>10</b><span>PHCs in pilot</span></div>
+        <div class="stat"><b>1</b><span>District hospital</span></div>
+        <div class="stat"><b>1</b><span>Oncology centre</span></div>
+        <div class="stat"><b>90d</b><span>Pilot cycle</span></div>
+      </div>
+      <div class="card">
+        <h3>Deployment map</h3>
+        <p>Phase 1: PHC intake + district referral + CancerQR tumor board. Phase 2: district analytics + screening camps. Phase 3: state-wide registry-ready dashboard.</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom">
+    <button class="active" onclick="showById('home')"><b>⌂</b>Home</button>
+    <button onclick="showById('patient')"><b>▣</b>Patient</button>
+    <button onclick="showById('doctor')"><b>✚</b>Doctor</button>
+    <button onclick="showById('board')"><b>◉</b>Board</button>
+    <button onclick="showById('reports')"><b>▤</b>Reports</button>
+  </nav>
+</div>
+
+<div id="modal" class="modal" onclick="if(event.target.id==='modal')closeModal()">
+  <div class="sheet">
+    <button class="close" onclick="closeModal()">Close</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+let currentRole='patient';
+const modalText={
+help:`<h2>CancerQR Demo Help</h2><p>This is a front-end working demo. Use the top menu or bottom navigation. Login with any OTP to open selected dashboards. Print/Save PDF works through browser print.</p>`,
+upload:`<h2>Upload Reports</h2><input class="input" type="file" multiple><p>Supported demo flow: PDF, JPG, PNG, DICOM placeholder. Backend can connect to cloud storage, AI OCR and oncology summary engine.</p><button class="primary" onclick="toast('Reports uploaded')">Submit Reports</button>`,
+whatsapp:`<h2>WhatsApp Handoff</h2><p>Prepared message to coordinator:</p><textarea class="input" rows="5">CancerQR Case CQR-KA-2026-1047: reports uploaded. Please schedule MDT review and share payment/appointment link.</textarea><button class="primary" onclick="location.href='https://wa.me/919686383132?text=CancerQR%20Case%20CQR-KA-2026-1047%20reports%20uploaded.%20Please%20schedule%20MDT%20review.'">Open WhatsApp</button>`,
+case:`<h2>Case CQR-KA-2026-1047</h2><p><b>Chief concern:</b> Suspected GI malignancy, pain 7/10, appetite low.</p><p><b>AI red flags:</b> weight loss, anemia, persistent pain.</p><p><b>Next action:</b> validate stage checklist and send to MDT.</p><button class="primary" onclick="toast('Case validated')">Validate & Route</button>`,
+prescription:`<h2>eRx Draft</h2><textarea class="input" rows="8">Diagnosis: Under oncology evaluation.\nAdvice: Complete staging investigations. Symptom monitoring for pain, appetite, sleep and nausea. Supportive care only under treating physician supervision.\nFollow-up: MDT review in 48-72 hours.</textarea><button class="primary" onclick="toast('Prescription draft saved')">Save eRx</button>`,
+referral:`<h2>Referral Note</h2><textarea class="input" rows="7">Referred to oncology tumor board for staging and treatment-sequence decision. Reports attached: biopsy, CT, CBC, LFT, RFT. Missing: PET-CT/staging scan and markers.</textarea><button class="primary" onclick="toast('Referral note generated')">Generate Referral</button>`
+};
+function show(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.menu button').forEach(b=>b.classList.remove('active')); if(btn)btn.classList.add('active'); syncBottom(id);}
+function showById(id){show(id); window.scrollTo({top:0,behavior:'smooth'});}
+function syncBottom(id){document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active')); const idx={home:0,patient:1,doctor:2,board:3,reports:4}[id]; if(idx!==undefined)document.querySelectorAll('.bottom button')[idx].classList.add('active');}
+function setRole(role,btn){currentRole=role;document.querySelectorAll('.role button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('roleTitle').textContent={patient:'Patient OTP Login',doctor:'Doctor Login',board:'Tumor Board Login',admin:'Admin Login',service:'Clinical Services Login'}[role];}
+function enterDashboard(){showById(currentRole==='service'?'services':currentRole);}
+function openModal(type){document.getElementById('modalBody').innerHTML=modalText[type]||'<h2>Demo</h2>';document.getElementById('modal').classList.add('active');}
+function closeModal(){document.getElementById('modal').classList.remove('active')}
+function toast(msg){closeModal();let t=document.createElement('div');t.textContent=msg;t.style.cssText='position:fixed;left:50%;bottom:88px;transform:translateX(-50%);background:#062a46;color:white;padding:12px 16px;border-radius:999px;z-index:200;font-weight:800;box-shadow:0 12px 28px rgba(0,0,0,.22)';document.body.appendChild(t);setTimeout(()=>t.remove(),1800);}
+function printReport(){window.print();}
+</script>
+</body>
+</html>
