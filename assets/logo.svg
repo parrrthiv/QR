@@ -1,0 +1,45 @@
+<svg width="240" height="240" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CancerQR logo">
+  <defs>
+    <linearGradient id="cqBadge" x1="6" y1="6" x2="114" y2="114" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#062b55"/>
+      <stop offset="0.5" stop-color="#0b63c7"/>
+      <stop offset="1" stop-color="#19b8e6"/>
+    </linearGradient>
+    <radialGradient id="cqGlow" cx="0.82" cy="0.12" r="0.9">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="0.45" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Badge -->
+  <rect x="4" y="4" width="112" height="112" rx="28" fill="url(#cqBadge)"/>
+  <rect x="4" y="4" width="112" height="112" rx="28" fill="url(#cqGlow)"/>
+  <rect x="4.75" y="4.75" width="110.5" height="110.5" rx="27.25" stroke="#ffffff" stroke-opacity="0.16" stroke-width="1.5"/>
+
+  <!-- QR finder eyes (top-left, top-right, bottom-left) -->
+  <g fill="none" stroke="#ffffff" stroke-width="6">
+    <rect x="18" y="18" width="28" height="28" rx="9"/>
+    <rect x="74" y="18" width="28" height="28" rx="9"/>
+    <rect x="18" y="74" width="28" height="28" rx="9"/>
+  </g>
+  <g fill="#ffffff">
+    <rect x="27" y="27" width="10" height="10" rx="3"/>
+    <rect x="83" y="27" width="10" height="10" rx="3"/>
+    <rect x="27" y="83" width="10" height="10" rx="3"/>
+  </g>
+
+  <!-- Medical cross in the data quadrant (oncology / clinical) -->
+  <g fill="#ffffff">
+    <rect x="82" y="73" width="12" height="30" rx="4"/>
+    <rect x="73" y="82" width="30" height="12" rx="4"/>
+  </g>
+
+  <!-- QR data modules: center gold accent + four mid-edge ticks -->
+  <rect x="54" y="54" width="12" height="12" rx="3.5" fill="#f5b941"/>
+  <g fill="#ffffff">
+    <rect x="55.5" y="26.5" width="9" height="9" rx="2.5"/>
+    <rect x="26.5" y="55.5" width="9" height="9" rx="2.5"/>
+    <rect x="84.5" y="55.5" width="9" height="9" rx="2.5"/>
+    <rect x="55.5" y="84.5" width="9" height="9" rx="2.5"/>
+  </g>
+</svg>

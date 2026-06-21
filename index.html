@@ -4,7 +4,36 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
-<title>CancerQR Research | EndoCann TumorBoard Navigator · Final Working</title>
+<title>CancerQR Research — EndoCann TumorBoard Navigator</title>
+<meta name="description" content="Clinician-first oncology tumor-board navigator: EndoCann protocol logic, weight-based dose titration, ESR/CRP & pain-grade review, and direct PubMed / NCI / ASCO evidence. Doctor-led supportive oncology decision support.">
+<link rel="canonical" href="https://cancerqr.com/">
+
+<!-- Logo / icons -->
+<link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#082b55">
+
+<!-- Open Graph (Facebook, LinkedIn, WhatsApp, Slack, iMessage…) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CancerQR Research">
+<meta property="og:title" content="CancerQR Research — EndoCann TumorBoard Navigator">
+<meta property="og:description" content="Clinician-first oncology decision support: EndoCann protocol logic, weight-based dose titration, ESR/CRP & pain-grade review, and direct PubMed / NCI / ASCO evidence.">
+<meta property="og:url" content="https://cancerqr.com/">
+<meta property="og:image" content="https://cancerqr.com/assets/og-image.png">
+<meta property="og:image:secure_url" content="https://cancerqr.com/assets/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="CancerQR Research — clinician-first oncology decision support">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CancerQR Research — EndoCann TumorBoard Navigator">
+<meta name="twitter:description" content="Clinician-first oncology decision support: EndoCann protocol logic, weight-based dose titration, ESR/CRP & pain-grade review, and direct PubMed / NCI / ASCO evidence.">
+<meta name="twitter:image" content="https://cancerqr.com/assets/og-image.png">
+<meta name="twitter:image:alt" content="CancerQR Research — clinician-first oncology decision support">
 <style>
 :root {
   --bg:#f4f8ff; --bg2:#eaf3ff; --ink:#0b1f3a; --muted:#55708f; --soft:#7d91aa;
@@ -295,6 +324,10 @@ body.show-dock .floatDock{opacity:1!important;visibility:visible!important;trans
   body{padding-bottom:20px!important}.hero{padding:18px 14px!important;margin-top:14px!important}.hero h2{font-size:34px!important;line-height:1.02!important;margin:14px 0 10px!important}.hero p{font-size:16px!important;line-height:1.55!important}.hero-primary-actions{grid-template-columns:1fr!important;gap:10px!important;margin-top:18px!important}.hero-primary-actions .hero-cta{min-height:52px!important;font-size:14px!important}.hero-flow-strip{font-size:12px!important;gap:5px!important;padding:8px!important}.hero-flow-strip span{padding:3px 7px}.doctor-panel{margin-top:14px!important}.floatDock{bottom:8px!important}body.show-dock{padding-bottom:150px!important}
 }
 
+
+/* === New CancerQR QR + medical-cross logo mark === */
+.brand .logo{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important;padding:0!important}
+.brand .logo svg{width:100%!important;height:100%!important;display:block;filter:drop-shadow(0 6px 14px rgba(0,0,0,.30))}
 </style>
 
 <!-- Final working build: navigation, filters, dose print/WhatsApp and URL syntax validated locally. -->
@@ -303,7 +336,7 @@ body.show-dock .floatDock{opacity:1!important;visibility:visible!important;trans
 <header class="topbar">
   <div class="head">
     <a class="brand" href="#home" aria-label="CancerQR Research home">
-      <div class="logo" aria-label="CancerQR logo"><svg viewBox="0 0 100 100" role="img" aria-label="CancerQR"><defs><linearGradient id="cqg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#18b981"/><stop offset="0.48" stop-color="#20b6e8"/><stop offset="1" stop-color="#0a5fb4"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect x="8" y="8" width="84" height="84" rx="24" fill="url(#cqg)"/><path d="M30 52c0-15 11-26 26-26 6 0 12 2 17 6l-8 9c-3-2-6-3-10-3-8 0-14 6-14 14s6 14 14 14c4 0 7-1 10-4l8 9c-5 5-11 7-18 7-14 0-25-11-25-26z" fill="#fff"/><path d="M58 58l18 18" stroke="#fff" stroke-width="8" stroke-linecap="round"/><path d="M30 30c19 7 35 7 54 0M16 70c20-7 36-7 54 0" stroke="#dffcff" stroke-width="3" stroke-linecap="round" opacity=".85" filter="url(#glow)"/><circle cx="30" cy="30" r="3" fill="#f5b941"/><circle cx="70" cy="70" r="3" fill="#f5b941"/></svg></div>
+      <div class="logo" aria-label="CancerQR logo"><svg viewBox="0 0 120 120" role="img" aria-label="CancerQR"><defs><linearGradient id="hdrBadge" x1="6" y1="6" x2="114" y2="114" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#062b55"/><stop offset="0.5" stop-color="#0b63c7"/><stop offset="1" stop-color="#19b8e6"/></linearGradient><radialGradient id="hdrGlow" cx="0.82" cy="0.12" r="0.9"><stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/><stop offset="0.45" stop-color="#ffffff" stop-opacity="0"/></radialGradient></defs><rect x="4" y="4" width="112" height="112" rx="28" fill="url(#hdrBadge)"/><rect x="4" y="4" width="112" height="112" rx="28" fill="url(#hdrGlow)"/><g fill="none" stroke="#fff" stroke-width="6"><rect x="18" y="18" width="28" height="28" rx="9"/><rect x="74" y="18" width="28" height="28" rx="9"/><rect x="18" y="74" width="28" height="28" rx="9"/></g><g fill="#fff"><rect x="27" y="27" width="10" height="10" rx="3"/><rect x="83" y="27" width="10" height="10" rx="3"/><rect x="27" y="83" width="10" height="10" rx="3"/><rect x="82" y="73" width="12" height="30" rx="4"/><rect x="73" y="82" width="30" height="12" rx="4"/><rect x="55.5" y="26.5" width="9" height="9" rx="2.5"/><rect x="26.5" y="55.5" width="9" height="9" rx="2.5"/><rect x="84.5" y="55.5" width="9" height="9" rx="2.5"/><rect x="55.5" y="84.5" width="9" height="9" rx="2.5"/></g><rect x="54" y="54" width="12" height="12" rx="3.5" fill="#f5b941"/></svg></div>
       <div><h1>CancerQR Research</h1><p>Doctor Evidence Navigator · cancerQR.com</p></div>
     </a>
     <div class="header-actions">
