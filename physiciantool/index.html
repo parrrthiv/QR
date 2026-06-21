@@ -32,42 +32,6 @@ html[data-theme="dark"]{--bg:#071421;--card:#0d2237;--panel:#102a43;--ink:#eaf4f
 @media(max-width:560px){.rCard.product .prodHero{grid-template-columns:1fr} .rCard.product .prodImg{height:210px} .rCard.product .prodImg img{max-height:198px}}
 @media(max-width:420px){.wrap{padding-left:10px;padding-right:10px} .navInner{gap:3px;padding:6px} .nb{font-size:.56rem;min-height:50px}}
 @media print{body{background:#fff!important;color:#000!important;padding:0!important;font-size:11pt} .header,.bottomNav,.noPrint,.rxActions,.card:not(.rxOut){display:none!important} .wrap{max-width:100%!important;padding:0!important;margin:0!important} .view{display:none!important} #view-rx{display:block!important} .rxOut{display:block!important;border:0!important;box-shadow:none!important;margin:0!important} .rxHeader{background:#061d35!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact} .rxBody{padding:10mm!important} .schedule table{min-width:0!important;font-size:9.5pt} th{background:#eee!important;color:#000!important} td,th{border:1px solid #ccc!important} a{color:#000!important;text-decoration:none!important}}
-
-/* === Research dropdown flow patch: protocol first, respective item second, no search bar === */
-.researchDropdownFlow{
-  display:grid!important;
-  grid-template-columns:1fr 1fr!important;
-  gap:10px!important;
-  margin-bottom:10px!important;
-  background:#f5faff!important;
-  border:1px solid var(--line)!important;
-  border-radius:16px!important;
-  padding:11px!important;
-}
-.researchDropdownFlow .fg{margin:0!important}
-.researchDropdownFlow select{
-  min-height:48px!important;
-  border-radius:13px!important;
-  font-weight:950!important;
-  background:#fff!important;
-  color:#102235!important;
-  border:1.5px solid var(--line2)!important;
-}
-.auditStrip{
-  background:#eef7ff;
-  color:#28506e;
-  border:1px solid #c8e0ef;
-  border-radius:12px;
-  padding:10px;
-  font-size:.80rem;
-  line-height:1.45;
-  margin-bottom:12px;
-}
-html[data-theme="dark"] .researchDropdownFlow{background:#102a43!important;border-color:#2b4760!important}
-html[data-theme="dark"] .researchDropdownFlow select{background:#0d2237!important;color:#eaf4ff!important;border-color:#365a77!important}
-html[data-theme="dark"] .auditStrip{background:#102a43;color:#bfe8ff;border-color:#2b4760}
-@media(max-width:560px){.researchDropdownFlow{grid-template-columns:1fr!important;gap:8px!important;padding:10px!important}}
-
 </style>
 </head>
 <body>
@@ -123,23 +87,7 @@ html[data-theme="dark"] .auditStrip{background:#102a43;color:#bfe8ff;border-colo
     <div class="card"><div class="title">Dose Titration Calculator</div><div class="note">First dose is intentionally conservative. Escalation requires tolerability review, caregiver observation and treating-physician judgement.</div><div id="doseOut"></div><button class="btn" type="button" onclick="generateRx(true)">Generate Detailed Prescription →</button><button class="btn2" type="button" onclick="navigate('protocols')">← Edit Protocols</button></div>
   </section>
   <section id="view-research" class="view hidden">
-    <div class="card">
-      <div class="title">Audited Research Links</div>
-      <div class="note">Choose a research protocol first, then select the respective product/protocol item. Default view is <b>EndoCann Products → All</b>. Search bar removed for faster mobile physician use.</div>
-      <div class="researchTop researchDropdownFlow">
-        <div class="fg">
-          <label>Research Protocol</label>
-          <select id="researchProtocol" onchange="setResearchSection(this.value)"></select>
-        </div>
-        <div class="fg">
-          <label>Respective Item</label>
-          <select id="researchItem" onchange="renderResearch()"></select>
-        </div>
-      </div>
-      <div class="auditStrip">Research links are grouped protocol-wise. Product cards use EndoCann brochure/product references; clinical evidence links are supportive-care references only and do not make cancer-treatment claims.</div>
-      <div class="rCount" id="researchCount"></div>
-      <div class="rGrid" id="researchGrid"></div>
-    </div>
+    <div class="card"><div class="title">Research &amp; Evidence</div><div class="catBar" id="researchCats"></div><div class="researchTop"><select id="researchProduct" onchange="renderResearch()"></select></div><div class="rCount" id="researchCount"></div><div class="rGrid" id="researchGrid"></div></div>
   </section>
   <section id="view-rx" class="view hidden">
     <div class="card rxOut" id="rxCard"><div id="rxPdfArea"><div class="rxHeader"><h2 id="rxDocName">CancerQR Rx</h2><p>EndoCann physician-directed supportive oncology documentation</p></div><div class="rxBody" id="rxBody"></div></div><div class="rxActions noPrint"><button class="rxbtn" type="button" onclick="printRx()">Print</button><button class="rxbtn pdf" type="button" onclick="downloadPDF()">Save PDF</button><button class="rxbtn wa" type="button" onclick="sendWA()">WhatsApp</button><button class="rxbtn reset" type="button" onclick="resetTool()">Reset</button></div></div>
@@ -254,24 +202,29 @@ function generateRx(go=true) {
 }
 function getWhatsAppText() {
   const products = getSelectedProducts(); const prot = getSelectedProtocols();
-  const lines = [];
-  lines.push(`CancerQR / EndoCann Supportive Rx`);
-  lines.push(`Patient: ${$('ptName').value}`);
-  lines.push(`Doctor: ${$('drName').value} (${$('domain').value})`);
-  lines.push(`Diagnosis context: ${$('cancer').value} · ${$('stage').value}`);
-  lines.push(`Weight: ${$('weight').value} kg | Symptom grade: ${$('pain').value}/10`);
-  lines.push('');
-  lines.push('ENDOCANN ECS / PRODUCT DOSE TITRATION:');
-  products.forEach(p => { const s = calcSchedule(p); lines.push(`• ${p.name} (${p.dose.form==='drops' ? p.dose.mgPerDrop + ' mg/drop' : p.dose.form})`); s.rows.forEach(r => lines.push(`  - ${r[0]}: ${r[1]} | ${r[2]}`)); });
-  lines.push('');
-  lines.push('FIRST DOSE CAUTION: first dose at night only, lowest measurable dose, caregiver observation preferred. No driving/alcohol/sedative stacking. Hold escalation and contact physician if dizziness, anxiety, hallucination, confusion, palpitations or excess sedation.');
-  lines.push('');
-  if(prot.length) { lines.push('ADJUNCT PROTOCOLS / DOSE-FORM:'); prot.forEach(x => lines.push(`• ${x.group} — ${x.name}: ${x.dose}. ${x.detail}`)); lines.push(''); }
-  lines.push(`Purchase/source: ECS & EndoCann products only via endocann.in or WhatsApp ${DATA.settings.phoneDisplay}.`);
-  lines.push(`Mushrooms/herbs source PDF: ${DATA.settings.sourcePdfPublic}`);
-  lines.push(`Follow-up: ${$('follow').value || 'As advised'}`);
-  lines.push('Clinical boundary: supportive care only; does not replace standard oncology treatment.');
-  return lines.join('\n');
+  const L = [];
+  L.push('CancerQR / EndoCann — Supportive Rx (summary)');
+  L.push(`Patient: ${$('ptName').value} | ${$('age').value||'-'}y/${$('sex').value}`);
+  L.push(`Doctor: ${$('drName').value} (${$('domain').value})`);
+  L.push(`Context: ${$('cancer').value} · ${$('stage').value} · ${$('weight').value}kg · grade ${$('pain').value}/10`);
+  L.push('');
+  L.push('PRODUCTS — start low, titrate (full schedule in PDF):');
+  products.forEach(p => {
+    const s = calcSchedule(p);
+    const start = s.rows[1] ? s.rows[1][1] : '1 at night';
+    const tgt = s.rows[s.rows.length-1] ? s.rows[s.rows.length-1][1] : '';
+    const unit = p.dose.form==='drops' ? `${p.dose.mgPerDrop}mg/drop` : p.dose.form;
+    L.push(`• ${p.name} (${unit}): start 1 at night -> ${start} -> review ${tgt}`);
+  });
+  L.push('');
+  if(prot.length) { L.push('Adjuncts: ' + prot.map(x=>`${x.name} (${x.dose})`).join('; ')); L.push(''); }
+  L.push('First dose at night only, lowest dose, caregiver present. No driving/alcohol/sedatives. Hold & call physician if dizziness, anxiety, confusion, palpitations or excess sedation.');
+  L.push('');
+  L.push(`Source: ECS/EndoCann only via endocann.in or WhatsApp ${DATA.settings.phoneDisplay}.`);
+  L.push(`Follow-up: ${$('follow').value || 'As advised'}`);
+  L.push('Supportive care only; does not replace standard oncology treatment.');
+  L.push('Full dose titration & instructions are in the PDF — tap Save PDF, then attach it here.');
+  return L.join('\n');
 }
 function printRx() { if(!generateRx(false)) return; navigate('rx'); setTimeout(()=>window.print(), 300); }
 function downloadPDF() {
@@ -307,58 +260,31 @@ function resetTool() {
   qa('input').forEach(x=>{ if(x.type==='checkbox') x.checked=false; else x.value=''; }); qa('textarea').forEach(x=>x.value=''); qa('select').forEach(x=>x.selectedIndex=0); $('pain').value='5';
   DATA.products.forEach(p=>{ const cb=document.querySelector(`.prodCheck[value="${p.slug}"]`); if(cb) cb.checked=!!p.dose.default; }); qa('.prodPick').forEach(l=>l.classList.toggle('checked', l.querySelector('input').checked)); qa('.opt').forEach(o=>o.classList.remove('sel')); $('rxBody').innerHTML=''; clearWarn(); renderDose(); navigate('intake'); closeMenu();
 }
-const RESEARCH_SECTIONS = [
-  {value:'Product Evidence', label:'EndoCann Products'},
-  {value:'ECS / Cannabis', label:'ECS / Cannabis'},
-  {value:'Mushrooms', label:'Mushrooms'},
-  {value:'Monoherbs', label:'Monoherbs'},
-  {value:'Diet / Safety', label:'Diet / Safety'},
-  {value:'Repurposed / Safety', label:'Repurposed / Safety'}
-];
 function renderResearchFilters() {
-  const proto = $('researchProtocol');
-  const item = $('researchItem');
-  if(!proto || !item) return;
-  proto.innerHTML = RESEARCH_SECTIONS.map(s=>`<option value="${esc(s.value)}">${esc(s.label)}</option>`).join('');
-  proto.value = currentResearchSection || 'Product Evidence';
-  renderResearchItems();
+  const sections = ['Product Evidence','ECS / Cannabis','Mushrooms','Monoherbs','Diet / Safety','Repurposed / Safety'];
+  $('researchCats').innerHTML = sections.map(s=>`<button type="button" class="rchip ${s===currentResearchSection?'on':''}" onclick="setResearchSection('${esc(s)}')">${esc(s)}</button>`).join('');
+  rebuildResearchDropdown();
 }
-function renderResearchItems() {
-  const item = $('researchItem');
-  if(!item) return;
-  const section = currentResearchSection || 'Product Evidence';
-  if(section === 'Product Evidence') {
-    item.innerHTML = '<option value="All">All EndoCann Products</option>' + DATA.products.map(p=>`<option value="${esc(p.slug)}">${esc(p.name)}</option>`).join('');
-    item.value = 'All';
-    return;
+function rebuildResearchDropdown() {
+  const sel = $('researchProduct');
+  if(currentResearchSection === 'Product Evidence') {
+    sel.innerHTML = '<option value="All">All products</option>' + DATA.products.map(p=>`<option value="${esc(p.slug)}">${esc(p.name)}</option>`).join('');
+  } else {
+    const cards = DATA.researchCards.filter(c=>c.section===currentResearchSection);
+    sel.innerHTML = `<option value="All">All ${esc(currentResearchSection)} items</option>` + cards.map((c,i)=>`<option value="idx:${i}">${esc(c.title)}</option>`).join('');
   }
-  const titles = [...new Set(DATA.researchCards.filter(c=>c.section===section).map(c=>c.title).filter(Boolean))];
-  item.innerHTML = '<option value="All">All respective items</option>' + titles.map(t=>`<option value="${esc(t)}">${esc(t)}</option>`).join('');
-  item.value = 'All';
 }
-function setResearchSection(s) {
-  currentResearchSection = s || 'Product Evidence';
-  const proto = $('researchProtocol');
-  if(proto && proto.value !== currentResearchSection) proto.value = currentResearchSection;
-  renderResearchItems();
-  renderResearch();
-}
+function setResearchSection(s) { currentResearchSection=s; qa('.rchip').forEach(b=>b.classList.toggle('on', b.textContent===s)); rebuildResearchDropdown(); renderResearch(); }
 function renderResearch() {
-  const section = currentResearchSection || 'Product Evidence';
-  const itemEl = $('researchItem');
-  const itemVal = itemEl ? itemEl.value : 'All';
-  let cards = DATA.researchCards.filter(c=>c.section===section);
-  if(section === 'Product Evidence' && itemVal !== 'All') cards = cards.filter(c=>c.product===itemVal);
-  if(section !== 'Product Evidence' && itemVal !== 'All') cards = cards.filter(c=>c.title===itemVal);
-  const label = (RESEARCH_SECTIONS.find(s=>s.value===section)||{}).label || section;
-  $('researchCount').textContent = `${label}: ${cards.length} audited link card(s) shown`;
-  $('researchGrid').innerHTML = cards.map(c => {
-    const p = c.product ? getProduct(c.product) : null;
-    if(p){
-      return `<div class="rCard product"><div class="prodHero"><div class="prodImg"><img src="${p.image}" alt="${esc(p.name)}"></div><div><h3>${esc(c.title)}</h3><div class="prodMeta"><span>${esc(p.category)}</span>${(p.indications||[]).slice(0,3).map(i=>`<span>${esc(i)}</span>`).join('')}</div><div class="prodPrice">${esc(p.packPrice||'')}</div><p>${esc(c.summary)}</p><div class="prodActions"><button type="button" class="addRx" onclick="addProductToRx('${esc(p.slug)}')">＋ Add to Rx & Dose</button><button type="button" class="buy" onclick="orderProduct('${esc(p.slug)}')">Buy / Enquire ↗</button></div></div></div><div class="links">${(c.links||[]).map(l=>`<a class="src" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)} ↗</a>`).join('')}</div></div>`;
-    }
-    return `<div class="rCard"><h3>${esc(c.title)}</h3><p>${esc(c.summary)}</p><div class="links">${(c.links||[]).map(l=>`<a class="src" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)} ↗</a>`).join('')}</div></div>`;
-  }).join('') || '<div class="rCard"><h3>No matching links</h3><p>Change the research protocol or respective item.</p></div>';
+  const sel = $('researchProduct').value;
+  let cards = DATA.researchCards.filter(c=>c.section===currentResearchSection);
+  if(currentResearchSection==='Product Evidence') {
+    if(sel !== 'All') cards = cards.filter(c=>c.product===sel);
+  } else if(sel.startsWith('idx:')) {
+    const i = Number(sel.slice(4)); cards = cards[i] ? [cards[i]] : [];
+  }
+  $('researchCount').textContent = `${cards.length} audited link card(s) shown`;
+  $('researchGrid').innerHTML = cards.map(c => { const p = c.product ? getProduct(c.product) : null; if(p){ return `<div class="rCard product"><div class="prodHero"><div class="prodImg"><img src="${p.image}" alt="${esc(p.name)}"></div><div><h3>${esc(c.title)}</h3><div class="prodMeta"><span>${esc(p.category)}</span>${(p.indications||[]).slice(0,3).map(i=>`<span>${esc(i)}</span>`).join('')}</div><div class="prodPrice">${esc(p.packPrice||'')}</div><p>${esc(c.summary)}</p><div class="prodActions"><button type="button" class="addRx" onclick="addProductToRx('${esc(p.slug)}')">＋ Add to Rx & Dose</button><button type="button" class="buy" onclick="orderProduct('${esc(p.slug)}')">Buy / Enquire ↗</button></div></div></div><div class="links">${c.links.map(l=>`<a class="src" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)} ↗</a>`).join('')}</div></div>`; } return `<div class="rCard"><h3>${esc(c.title)}</h3><p>${esc(c.summary)}</p><div class="links">${c.links.map(l=>`<a class="src" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)} ↗</a>`).join('')}</div></div>`; }).join('') || '<div class="rCard"><h3>No matching links</h3><p>Change the section or product filter.</p></div>';
 }
 function livePreview() {
   const el = $('livePreview'); if(!el) return;
