@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>CancerQR — Clean Clinical Investor Flow Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7FAFC;
+  --paper:#FFFFFF;
+  --ink:#071827;
+  --text:#1B2B3D;
+  --muted:#617184;
+  --line:#DDE7F1;
+  --navy:#071827;
+  --blue:#0B74E5;
+  --sky:#27B3FF;
+  --teal:#11A99A;
+  --green:#16A34A;
+  --amber:#F59E0B;
+  --rose:#E84D72;
+  --violet:#6D5DFD;
+  --slate:#334155;
+  --softBlue:#EAF5FF;
+  --softTeal:#E8FAF7;
+  --softGreen:#ECFDF3;
+  --softAmber:#FFF7E8;
+  --softRose:#FFF0F5;
+  --softViolet:#F2EFFF;
+  --shadow:0 18px 48px rgba(15,23,42,.09);
+  --shadowSoft:0 10px 26px rgba(15,23,42,.06);
+  --head:'Sora',system-ui,sans-serif;
+  --body:'Manrope',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink)}
+body{font-family:var(--body);position:fixed;inset:0;-webkit-font-smoothing:antialiased}
+button{font-family:inherit}
+#stage{position:absolute;inset:0}
+.slide{
+  --accent:var(--blue);
+  --accent2:var(--sky);
+  --soft:var(--softBlue);
+  position:absolute;inset:0;display:none;overflow-y:auto;scrollbar-width:none;
+  padding:calc(env(safe-area-inset-top) + 70px) 16px calc(env(safe-area-inset-bottom) + 78px);
+  background:
+    radial-gradient(760px 420px at 105% -12%,var(--soft),transparent 58%),
+    radial-gradient(660px 420px at -18% 24%,rgba(255,255,255,.92),transparent 58%),
+    linear-gradient(145deg,#FFFFFF 0%,#F7FAFC 60%,#FFFFFF 100%);
+}
+.slide.dark{
+  color:#fff;
+  background:
+    radial-gradient(820px 480px at 105% -12%,rgba(39,179,255,.22),transparent 58%),
+    radial-gradient(640px 420px at -18% 22%,rgba(17,169,154,.16),transparent 58%),
+    linear-gradient(150deg,#071827 0%,#0C2338 55%,#071827 100%);
+}
+.slide::-webkit-scrollbar{display:none}
+.slide.active{display:block;animation:page .45s cubic-bezier(.2,.82,.22,1)}
+@keyframes page{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.wrap{min-height:100%;max-width:560px;margin:0 auto;display:flex;flex-direction:column;justify-content:center;gap:14px;position:relative;z-index:2}
+.slide.active .reveal{animation:rise .55s cubic-bezier(.2,.82,.25,1) both}
+.d1{animation-delay:.04s}.d2{animation-delay:.11s}.d3{animation-delay:.18s}.d4{animation-delay:.25s}.d5{animation-delay:.32s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.bgGrid{position:absolute;inset:0;pointer-events:none;opacity:.46;z-index:0;background-image:linear-gradient(rgba(11,116,229,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(11,116,229,.045) 1px,transparent 1px);background-size:32px 32px;mask-image:radial-gradient(circle at 50% 32%,black,transparent 76%)}
+.dark .bgGrid{opacity:.20;background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px)}
+.blob{position:absolute;z-index:0;pointer-events:none;border-radius:999px;filter:blur(34px);opacity:.2;animation:drift 8s ease-in-out infinite}
+.b1{width:190px;height:190px;right:-70px;top:95px;background:var(--accent2)}
+.b2{width:165px;height:165px;left:-85px;bottom:135px;background:var(--accent);animation-delay:1.3s}
+.b3{width:130px;height:130px;right:22px;bottom:75px;background:var(--teal);animation-delay:2.2s}
+.dark .blob{opacity:.34}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(12px,-15px)}}
+
+.kicker{display:inline-flex;align-items:center;gap:8px;width:max-content;max-width:100%;padding:7px 11px;border-radius:999px;background:var(--soft);border:1px solid color-mix(in srgb,var(--accent) 16%,#fff);color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+.dark .kicker{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:#CFEFFF}
+.kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 12%,transparent)}
+h1{font-family:var(--head);font-size:30px;line-height:1.03;font-weight:800;letter-spacing:-.052em;text-wrap:balance;color:var(--ink)}
+.dark h1{color:#fff}
+.accent{color:var(--accent)}
+.dark .accent{background:linear-gradient(100deg,#7DD3FC,#2DD4BF 55%,#FDE68A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:13px;line-height:1.48;font-weight:650;color:var(--muted);text-wrap:pretty}
+.dark .sub{color:#AFC2D6}
+
+.logoRow{display:flex;align-items:center;gap:12px}
+.logo{width:58px;height:58px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent),var(--accent2) 56%,var(--teal));box-shadow:0 22px 55px color-mix(in srgb,var(--accent) 18%,transparent)}
+.logoIn{width:47px;height:47px;border-radius:16px;background:#fff;display:flex;align-items:center;justify-content:center}
+.logo svg{width:28px;height:28px;fill:none;stroke:var(--accent);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.word b{display:block;font-family:var(--head);font-size:22px;font-weight:800;letter-spacing:-.052em;line-height:1;color:var(--ink)}
+.dark .word b{color:#fff}
+.word span{display:block;margin-top:4px;font-size:8.6px;letter-spacing:.18em;text-transform:uppercase;font-weight:900;color:var(--muted)}
+.dark .word span{color:#9EB5CE}
+
+.frame{display:grid;gap:10px}
+.panel,.mini,.metric,.note,.team,.table,.stackItem,.boardCell{
+  background:rgba(255,255,255,.92);border:1px solid var(--line);box-shadow:var(--shadowSoft);
+}
+.dark .panel,.dark .mini,.dark .metric,.dark .note,.dark .team{
+  background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.12);box-shadow:none;
+}
+.panel{border-radius:30px;padding:14px;position:relative;overflow:hidden}
+.panel:before{content:"";position:absolute;inset:0;background:linear-gradient(145deg,var(--soft),transparent 56%);opacity:.86;pointer-events:none}
+.dark .panel:before{background:linear-gradient(145deg,rgba(39,179,255,.16),transparent 56%)}
+.panelHead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px;position:relative;z-index:1}
+.panelHead b{font-family:var(--head);font-size:14px;font-weight:800;letter-spacing:-.02em;color:var(--text)}
+.dark .panelHead b{color:#fff}
+.panelHead span{font-size:8.8px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.dark .panelHead span{color:#9EB5CE}
+.viz{display:flex;justify-content:center;align-items:center;position:relative;z-index:1}
+.viz svg{width:100%;max-width:480px;height:auto;overflow:visible}
+.draw{stroke-dasharray:1000;stroke-dashoffset:1000}
+.slide.active .draw{animation:draw 1.1s cubic-bezier(.3,.74,.22,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.pulse{transform-origin:center;animation:pulse 3.2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.floaty{animation:floaty 6s ease-in-out infinite}
+.floaty2{animation:floaty 7s ease-in-out infinite reverse}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mini{border-radius:23px;padding:12px;position:relative;overflow:hidden}
+.mini:after{content:"";position:absolute;right:-26px;bottom:-26px;width:84px;height:84px;border-radius:50%;background:var(--soft)}
+.dark .mini:after{opacity:.25}
+.mini i{width:38px;height:38px;border-radius:15px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:18px;margin-bottom:8px;position:relative;z-index:1}
+.dark .mini i{background:rgba(255,255,255,.08)}
+.mini b{display:block;font-size:12px;font-weight:900;line-height:1.15;color:var(--text);position:relative;z-index:1}
+.dark .mini b{color:#fff}
+.mini span{display:block;font-size:8.7px;font-weight:650;line-height:1.3;color:var(--muted);margin-top:5px;position:relative;z-index:1}
+.dark .mini span{color:#AFC2D6}
+.metric{min-height:76px;border-radius:22px;padding:8px 6px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.dark .metric{background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.12);box-shadow:none}
+.metric b{font-family:var(--head);font-size:18px;font-weight:800;line-height:1;color:var(--accent);letter-spacing:-.04em}
+.metric:nth-child(2) b{color:var(--accent2)}
+.metric:nth-child(3) b{color:var(--teal)}
+.metric span{display:block;margin-top:7px;font-size:8px;line-height:1.2;font-weight:850;color:var(--muted)}
+.dark .metric span{color:#AFC2D6}
+.note{border-radius:22px;padding:12px 14px;font-size:11.2px;line-height:1.42;font-weight:750;text-align:center;color:var(--text)}
+.note b{color:var(--accent)}
+.dark .note{color:#EAF6FF}
+.dark .note b{color:#7DD3FC}
+
+/* Board and stack */
+.boardGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.boardCell{min-height:72px;border-radius:21px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7px}
+.boardCell i{font-style:normal;font-size:20px;margin-bottom:5px}
+.boardCell b{font-size:8.2px;font-weight:900;line-height:1.1;color:var(--text)}
+.stack{display:flex;flex-direction:column;gap:8px}
+.stackItem{border-radius:22px;padding:10px 11px;display:grid;grid-template-columns:42px 1fr auto;gap:10px;align-items:center}
+.stackItem i{width:40px;height:40px;border-radius:15px;background:var(--soft);display:flex;align-items:center;justify-content:center;font-style:normal;font-size:18px}
+.stackItem b{display:block;font-size:12px;font-weight:900;color:var(--text)}
+.stackItem span{display:block;font-size:8.2px;font-weight:650;color:var(--muted);margin-top:2px}
+.stackItem em{font-style:normal;background:var(--soft);color:var(--accent);font-size:7px;font-weight:950;border-radius:999px;padding:5px 7px;text-transform:uppercase}
+.table{border-radius:24px;overflow:hidden}
+.row{display:grid;grid-template-columns:1.25fr .75fr .75fr .75fr;border-top:1px solid var(--line)}
+.row:first-child{border-top:0;background:var(--soft)}
+.row div{padding:8px 4px;text-align:center;font-size:8px;line-height:1.16;font-weight:850;color:var(--muted)}
+.row div:first-child{text-align:left;padding-left:10px;color:var(--text)}
+.row:first-child div{font-size:7.3px;color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
+.y{color:#039855!important;font-size:11px!important}.p{color:#F79009!important}.n{color:#98A2B3!important}
+.teamGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.team{border-radius:22px;padding:10px;display:grid;grid-template-columns:36px 1fr;gap:9px;align-items:center;position:relative;overflow:hidden}
+.team:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--accent),var(--accent2))}
+.team:nth-child(even):before{background:linear-gradient(var(--violet),var(--rose))}
+.avatar{width:34px;height:38px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:950}
+.team:nth-child(even) .avatar{background:linear-gradient(135deg,var(--violet),var(--rose))}
+.team b{display:block;font-size:10.7px;line-height:1.08;font-weight:900;color:#fff}
+.team span{display:block;font-size:7.4px;line-height:1.25;font-weight:700;color:#AFC2D6;margin-top:4px}
+
+/* nav */
+#top{position:fixed;top:0;left:0;right:0;z-index:50;padding:calc(env(safe-area-inset-top) + 10px) 15px 10px;display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,rgba(247,250,252,.96),rgba(247,250,252,.72),rgba(247,250,252,0));backdrop-filter:blur(12px)}
+#brand{font-family:var(--head);font-size:17px;font-weight:800;letter-spacing:-.04em;color:var(--ink)}
+#brand span{color:var(--blue)}
+#prog{flex:1;height:5px;border-radius:999px;background:#E7EEF7;overflow:hidden}
+#prog i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--blue),var(--sky),var(--teal));transition:.34s ease}
+#menuBtn{width:39px;height:39px;border-radius:15px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(15,23,42,.05)}
+#menuBtn svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:2.4;stroke-linecap:round}
+#bottom{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 15px calc(env(safe-area-inset-bottom) + 12px);display:flex;gap:10px;background:linear-gradient(0deg,rgba(247,250,252,.98),rgba(247,250,252,.72),rgba(247,250,252,0));backdrop-filter:blur(12px)}
+.nav{height:47px;border-radius:18px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:13.4px;font-weight:900;flex:1;box-shadow:0 8px 20px rgba(15,23,42,.05)}
+.nav.primary{flex:1.35;background:linear-gradient(135deg,var(--blue),var(--sky));color:#fff;border:none}
+.nav:disabled{opacity:.34}
+#count{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 68px);transform:translateX(-50%);z-index:49;border-radius:999px;background:#fff;border:1px solid var(--line);padding:5px 12px;font-size:10px;font-weight:950;color:var(--muted);letter-spacing:.1em}
+#menu{position:fixed;inset:0;z-index:80;background:rgba(7,24,39,.38);backdrop-filter:blur(14px);display:none;align-items:flex-end}
+#menu.open{display:flex}
+.sheet{width:100%;max-height:78vh;overflow-y:auto;border-radius:28px 28px 0 0;background:rgba(255,255,255,.96);border-top:1px solid var(--line);padding:8px 14px calc(env(safe-area-inset-bottom) + 18px)}
+.grab{width:42px;height:5px;border-radius:999px;background:#D2DCE8;margin:8px auto 14px}
+.sheet h3{font-family:var(--head);font-size:19px;margin:0 8px 10px}
+.mItem{display:flex;gap:10px;align-items:center;padding:11px 10px;border-radius:16px;color:var(--ink);font-size:13px;font-weight:850}
+.mItem.on{background:var(--softBlue)}
+.mi{width:25px;height:25px;border-radius:10px;background:var(--softBlue);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:950;flex:none}
+@media(max-height:720px){
+  .slide{padding-top:calc(env(safe-area-inset-top) + 63px);padding-bottom:calc(env(safe-area-inset-bottom) + 70px)}
+  .wrap{gap:11px}h1{font-size:26px}.sub{font-size:11.6px}
+  .metric{min-height:64px}.metric b{font-size:15px}.metric span{font-size:7.3px}
+  .mini{padding:10px}.mini i{width:33px;height:33px;font-size:16px;margin-bottom:7px}.mini b{font-size:11px}.mini span{font-size:7.7px}
+  .boardCell{min-height:60px}.boardCell i{font-size:16px}.boardCell b{font-size:7.3px}
+}
+</style>
+</head>
+<body>
+<div id="top">
+  <div id="brand">Cancer<span>QR</span></div>
+  <div id="prog"><i></i></div>
+  <button id="menuBtn" aria-label="Open menu"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+</div>
+
+<div id="stage">
+
+<section class="slide active dark" data-title="Cover" style="--accent:#0B74E5;--accent2:#27B3FF;--soft:#EAF5FF">
+  <div class="bgGrid"></div><div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div class="logoRow reveal d1">
+      <div class="logo"><div class="logoIn"><svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"/><path d="M14 14h2v2h-2zM18 14h2v6h-6v-2h4zM14 18h2v2h-2z"/></svg></div></div>
+      <div class="word"><b>CancerQR</b><span>Oncology Intelligence Layer</span></div>
+    </div>
+    <div class="kicker reveal d2">Clean clinical investor deck</div>
+    <h1 class="reveal d3">CancerQR is the <span class="accent">clinical operating layer</span> for India’s cancer crisis.</h1>
+    <div class="sub reveal d4">India faces a cancer-capital scale burden; CancerQR turns fragmented cancer care into one coordinated clinical operating layer.</div>
+    <div class="grid3 reveal d5">
+      <div class="metric"><b>Patient</b><span>upload → plan → follow-up</span></div>
+      <div class="metric"><b>Doctor</b><span>AI summary → board → signoff</span></div>
+      <div class="metric"><b>Business</b><span>cohort → continuity → ARR</span></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="slide dark" data-title="Platform Thesis" style="--accent:#E84D72;--accent2:#27B3FF;--soft:#FFF0F5">
+  <div class="bgGrid"></div><div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Platform thesis</div>
+    <h1 class="reveal d2">India’s cancer crisis needs a <span class="accent">clinical operating layer.</span></h1>
+    <div class="panel reveal d3">
+      <div class="panelHead"><b>Crisis → coordination → continuity</b><span>Investor logic</span></div>
+      <div class="viz">
+        <svg viewBox="0 0 390 270">
+          <defs>
+            <linearGradient id="thesisPath" x1="0" x2="1">
+              <stop offset="0" stop-color="#F472B6"/>
+              <stop offset=".42" stop-color="#27B3FF"/>
+              <stop offset=".75" stop-color="#11A99A"/>
+              <stop offset="1" stop-color="#16A34A"/>
+            </linearGradient>
+          </defs>
+          <rect x="24" y="34" width="342" height="184" rx="34" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)"/>
+          <path class="draw" d="M56 132 C102 62 154 70 196 132 C234 188 292 164 334 84" fill="none" stroke="url(#thesisPath)" stroke-width="7" stroke-linecap="round"/>
+          <g font-family="Manrope" text-anchor="middle" font-weight="900">
+            <circle cx="56" cy="132" r="31" fill="#0C2338" stroke="#F472B6"/>
+            <text x="56" y="126" font-size="18" fill="#FCE7F3">1 in 9</text>
+            <text x="56" y="146" font-size="8" fill="#FCE7F3">cancer risk</text>
+
+            <circle cx="154" cy="76" r="31" fill="#0C2338" stroke="#F59E0B"/>
+            <text x="154" y="72" font-size="20" fill="#FEF3C7">⚠</text>
+            <text x="154" y="93" font-size="8" fill="#FEF3C7">fragmented care</text>
+
+            <circle cx="236" cy="154" r="36" fill="#0C2338" stroke="#27B3FF"/>
+            <text x="236" y="149" font-size="18" fill="#BAE6FD">AI</text>
+            <text x="236" y="170" font-size="8" fill="#BAE6FD">board workflow</text>
+
+            <circle cx="334" cy="84" r="31" fill="#0C2338" stroke="#16A34A"/>
+            <text x="334" y="80" font-size="18" fill="#DCFCE7">ARR</text>
+            <text x="334" y="101" font-size="8" fill="#DCFCE7">continuity</text>
+          </g>
+          <g font-family="Manrope" text-anchor="middle" font-weight="800">
+            <rect x="48" y="224" width="86" height="32" rx="13" fill="rgba(244,114,182,.13)" stroke="rgba(244,114,182,.25)"/>
+            <text x="91" y="244" fill="#FCE7F3" font-size="8.3">public-health crisis</text>
+            <rect x="152" y="224" width="86" height="32" rx="13" fill="rgba(39,179,255,.13)" stroke="rgba(39,179,255,.25)"/>
+            <text x="195" y="244" fill="#BAE6FD" font-size="8.3">workflow gap</text>
+            <rect x="256" y="224" width="86" height="32" rx="13" fill="rgba(22,163,74,.13)" stroke="rgba(22,163,74,.25)"/>
+            <text x="299" y="244" fill="#DCFCE7" font-size="8.3">recurring care</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="grid3 reveal d4">
+      <div class="metric"><b>Crisis</b><span>large and rising burden</span></div>
+      <div class="metric"><b>Workflow</b><span>reports, board, signoff</span></div>
+      <div class="metric"><b>Business</b><span>6–9 month continuity</span></div>
+    </div>
+    <div class="note reveal d5"><b>Investor thesis:</b> CancerQR converts India’s cancer burden into a coordinated care workflow with recurring clinical follow-up.</div>
+  </div>
+</section>
+
+
+<section class="slide dark" data-title="India Cancer Burden" style="--accent:#E84D72;--accent2:#F59E0B;--soft:#FFF0F5">
+  <div class="bgGrid"></div><div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Cancer burden</div>
+    <h1 class="reveal d2">India is entering a <span class="accent">cancer-capital scale crisis.</span></h1>
+    <div class="panel reveal d3">
+      <div class="panelHead"><b>Why CancerQR matters now</b><span>Burden → workflow gap</span></div>
+      <div class="viz">
+        <svg viewBox="0 0 390 265">
+          <defs>
+            <linearGradient id="burdenPath" x1="0" x2="1"><stop offset="0" stop-color="#F472B6"/><stop offset=".55" stop-color="#F59E0B"/><stop offset="1" stop-color="#38BDF8"/></linearGradient>
+          </defs>
+          <rect x="28" y="34" width="334" height="180" rx="34" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)"/>
+          <path class="draw" d="M64 156 C118 70 170 76 206 128 C244 182 298 138 334 70" fill="none" stroke="url(#burdenPath)" stroke-width="7" stroke-linecap="round"/>
+          <g font-family="Manrope" text-anchor="middle" font-weight="900">
+            <circle cx="64" cy="156" r="34" fill="#0C2338" stroke="#F472B6"/>
+            <text x="64" y="151" font-size="18" fill="#FCE7F3">1 in 9</text>
+            <text x="64" y="170" font-size="8.5" fill="#FCE7F3">lifetime risk</text>
+
+            <circle cx="196" cy="122" r="43" fill="#0C2338" stroke="#F59E0B"/>
+            <text x="196" y="116" font-size="20" fill="#FEF3C7">1.46M</text>
+            <text x="196" y="138" font-size="8.5" fill="#FEF3C7">new cases estimated</text>
+
+            <circle cx="334" cy="70" r="34" fill="#0C2338" stroke="#38BDF8"/>
+            <text x="334" y="65" font-size="17" fill="#BAE6FD">2040</text>
+            <text x="334" y="84" font-size="8.5" fill="#BAE6FD">rising burden</text>
+          </g>
+          <g font-family="Manrope" text-anchor="middle" font-weight="800">
+            <rect x="58" y="218" width="84" height="32" rx="13" fill="rgba(244,114,182,.13)" stroke="rgba(244,114,182,.25)"/>
+            <text x="100" y="238" fill="#FCE7F3" font-size="8.3">family urgency</text>
+            <rect x="153" y="218" width="84" height="32" rx="13" fill="rgba(245,158,11,.13)" stroke="rgba(245,158,11,.25)"/>
+            <text x="195" y="238" fill="#FEF3C7" font-size="8.3">care complexity</text>
+            <rect x="248" y="218" width="84" height="32" rx="13" fill="rgba(56,189,248,.13)" stroke="rgba(56,189,248,.25)"/>
+            <text x="290" y="238" fill="#BAE6FD" font-size="8.3">workflow gap</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="grid3 reveal d4">
+      <div class="metric"><b>1 in 9</b><span>Indians likely to develop cancer</span></div>
+      <div class="metric"><b>1.46M</b><span>new cases estimated in 2022</span></div>
+      <div class="metric"><b>57.5%</b><span>projected rise by 2040*</span></div>
+    </div>
+    <div class="note reveal d5"><b>Investor-safe line:</b> “Cancer-capital scale crisis” is used as a market urgency phrase; the cited evidence supports India’s large and rising cancer burden.</div>
+  </div>
+</section>
+
+
+<section class="slide" data-title="Problem" style="--accent:#E84D72;--accent2:#F59E0B;--soft:#FFF0F5">
+  <div class="bgGrid"></div><div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Problem</div>
+    <h1 class="reveal d2">Cancer care breaks at <span class="accent">coordination</span>, not intent.</h1>
+    <div class="panel reveal d3">
+      <div class="panelHead"><b>Current patient reality</b><span>Fragmented journey</span></div>
+      <div class="viz">
+        <svg viewBox="0 0 390 270">
+          <defs>
+            <linearGradient id="problemPath" x1="0" x2="1"><stop offset="0" stop-color="#E84D72"/><stop offset=".55" stop-color="#F59E0B"/><stop offset="1" stop-color="#0B74E5"/></linearGradient>
+          </defs>
+          <g fill="none" stroke="#DDE7F1" stroke-width="2">
+            <path d="M195 130 L82 62M195 130 L308 62M195 130 L70 192M195 130 L320 192M195 130 L195 42M195 130 L195 226"/>
+          </g>
+          <path class="draw" d="M82 62 C136 96 98 150 150 172 C210 198 252 86 308 62" fill="none" stroke="url(#problemPath)" stroke-width="6" stroke-linecap="round"/>
+          <path class="draw" d="M70 192 C122 118 266 212 320 192" fill="none" stroke="url(#problemPath)" stroke-width="6" stroke-linecap="round" opacity=".65"/>
+          <g font-family="Manrope" text-anchor="middle" font-weight="900">
+            <circle cx="195" cy="130" r="42" fill="#fff" stroke="#E84D72"/><text x="195" y="125" font-size="24">👤</text><text x="195" y="148" font-size="8.5" fill="#617184">Patient + family</text>
+            <circle cx="82" cy="62" r="27" fill="#fff" stroke="#E84D72"/><text x="82" y="69" font-size="20">📄</text><text x="82" y="100" font-size="8" fill="#617184">Reports</text>
+            <circle cx="308" cy="62" r="27" fill="#fff" stroke="#F59E0B"/><text x="308" y="69" font-size="20">👨‍⚕️</text><text x="308" y="100" font-size="8" fill="#617184">Opinions</text>
+            <circle cx="70" cy="192" r="27" fill="#fff" stroke="#0B74E5"/><text x="70" y="199" font-size="20">🧪</text><text x="70" y="230" font-size="8" fill="#617184">Labs</text>
+            <circle cx="320" cy="192" r="27" fill="#fff" stroke="#6D5DFD"/><text x="320" y="199" font-size="20">💊</text><text x="320" y="230" font-size="8" fill="#617184">Treatment</text>
+            <circle cx="195" cy="42" r="27" fill="#fff" stroke="#11A99A"/><text x="195" y="49" font-size="20">🏥</text><text x="195" y="82" font-size="8" fill="#617184">Hospital</text>
+            <circle cx="195" cy="226" r="27" fill="#fff" stroke="#E84D72"/><text x="195" y="233" font-size="20">?</text><text x="195" y="263" font-size="8" fill="#617184">No unified plan</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="grid3 reveal d4">
+      <div class="metric"><b>Reports</b><span>scattered across files</span></div>
+      <div class="metric"><b>Doctors</b><span>working in silos</span></div>
+      <div class="metric"><b>Family</b><span>left without clarity</span></div>
+    </div>
+    <div class="note reveal d5"><b>Investor problem:</b> cancer care is high-value, long-duration and emotionally urgent — but the workflow is fragmented.</div>
+  </div>
+</section>
+
+
+
+<section class="slide dark" data-title="Solution" style="--accent:#0B74E5;--accent2:#11A99A;--soft:#EAF5FF">
+  <div class="bgGrid"></div><div class="blob b1"></div><div class="blob b3"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Solution</div>
+    <h1 class="reveal d2">CancerQR creates one <span class="accent">doctor-approved cancer pathway.</span></h1>
+    <div class="panel reveal d3">
+      <div class="panelHead"><b>How the solution works</b><span>Unified operating layer</span></div>
+      <div class="viz">
+        <svg viewBox="0 0 390 280">
+          <defs>
+            <linearGradient id="solutionPath" x1="0" x2="1"><stop offset="0" stop-color="#7DD3FC"/><stop offset=".5" stop-color="#2DD4BF"/><stop offset="1" stop-color="#FDE68A"/></linearGradient>
+          </defs>
+          <rect x="44" y="34" width="302" height="196" rx="34" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)"/>
+          <path class="draw" d="M68 132 C112 70 160 78 196 126 C230 172 284 154 322 92" fill="none" stroke="url(#solutionPath)" stroke-width="7" stroke-linecap="round"/>
+          <g font-family="Manrope" text-anchor="middle" font-weight="900">
+            <g class="floaty"><circle cx="68" cy="132" r="28" fill="#0C2338" stroke="#7DD3FC"/><text x="68" y="139" font-size="20">📥</text><text x="68" y="172" fill="#BAE6FD" font-size="8.5">Upload</text></g>
+            <g><circle cx="150" cy="80" r="28" fill="#0C2338" stroke="#2DD4BF"/><text x="150" y="87" font-size="20">🤖</text><text x="150" y="45" fill="#CCFBF1" font-size="8.5">AI summary</text></g>
+            <g class="pulse"><circle cx="220" cy="140" r="34" fill="#0C2338" stroke="#FDE68A"/><text x="220" y="148" font-size="23">👥</text><text x="220" y="182" fill="#FEF3C7" font-size="8.5">Tumor board</text></g>
+            <g><circle cx="322" cy="92" r="28" fill="#0C2338" stroke="#F0ABFC"/><text x="322" y="99" font-size="20">✅</text><text x="322" y="132" fill="#FCE7F3" font-size="8.5">Doctor signoff</text></g>
+          </g>
+          <g font-family="Manrope" text-anchor="middle" font-weight="800">
+            <rect x="72" y="218" width="76" height="34" rx="13" fill="rgba(125,211,252,.14)" stroke="rgba(125,211,252,.30)"/><text x="110" y="239" fill="#BAE6FD" font-size="8.5">Patient plan</text>
+            <rect x="158" y="218" width="76" height="34" rx="13" fill="rgba(45,212,191,.14)" stroke="rgba(45,212,191,.30)"/><text x="196" y="239" fill="#CCFBF1" font-size="8.5">Follow-up</text>
+            <rect x="244" y="218" width="76" height="34" rx="13" fill="rgba(253,230,138,.14)" stroke="rgba(253,230,138,.30)"/><text x="282" y="239" fill="#FEF3C7" font-size="8.5">Registry</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="grid3 reveal d4">
+      <div class="metric"><b>Patient</b><span>gets clarity</span></div>
+      <div class="metric"><b>Doctor</b><span>gets workflow</span></div>
+      <div class="metric"><b>Platform</b><span>gets data moat</span></div>
+    </div>
+    <div class="note reveal d5"><b>Solution logic:</b> CancerQR does not replace doctors or hospitals; it organizes the cancer journey around them.</div>
+  </div>
+</section>
+
+
+<section class="slide" data-title="Patient Flow" style="--accent:#0B74E5;--accent2:#11A99A;--soft:#EAF5FF">
+  <div class="bgGrid"></div><div class="blob b1"></div><div class="blob b3"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Patient flow</div>
+    <h1 class="reveal d2">From cancer anxiety to a <span class="accent">doctor-approved pathway.</span></h1>
+    <div class="panel reveal d3">
+      <div class="panelHead"><b>Patient journey after CancerQR</b><span>Demand flow</span></div>
+      <div class="viz">
+        <svg viewBox="0 0 390 270">
+          <defs><linearGradient id="patientFlow" x1="0" x2="1"><stop offset="0" stop-color="#0B74E5"/><stop offset=".55" stop-color="#11A99A"/><stop offset="1" stop-color="#16A34A"/></linearGradient></defs>
+          <path class="draw" d="M38 132 C82 72 126 76 164 120 C208 172 252 160 292 112 C318 80 344 82 360 94" fill="none" stroke="url(#patientFlow)" stroke-width="7" stroke-linecap="round"/>
+          <g font-family="Manrope" text-anchor="middle" font-weight="900">
+            <g class="floaty"><circle cx="38" cy="132" r="28" fill="#fff" stroke="#0B74E5"/><text x="38" y="139" font-size="20">1</text><text x="38" y="176" font-size="8.5" fill="#617184">WhatsApp / QR</text></g>
+            <g><circle cx="112" cy="84" r="28" fill="#fff" stroke="#0B74E5"/><text x="112" y="91" font-size="20">2</text><text x="112" y="49" font-size="8.5" fill="#617184">Upload reports</text></g>
+            <g class="pulse"><circle cx="194" cy="140" r="31" fill="#fff" stroke="#11A99A"/><text x="194" y="147" font-size="20">3</text><text x="194" y="184" font-size="8.5" fill="#617184">AI case summary</text></g>
+            <g><circle cx="280" cy="122" r="28" fill="#fff" stroke="#11A99A"/><text x="280" y="129" font-size="20">4</text><text x="280" y="86" font-size="8.5" fill="#617184">Board review</text></g>
+            <g class="floaty2"><circle cx="350" cy="94" r="28" fill="#fff" stroke="#16A34A"/><text x="350" y="101" font-size="20">5</text><text x="350" y="139" font-size="8.5" fill="#617184">Care plan</text></g>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="grid2 reveal d4">
+      <div class="mini"><i>📲</i><b>Patient entry</b><span>QR/WhatsApp upload makes onboarding simple for families.</span></div>
+      <div class="mini"><i>📋</i><b>Clear output</b><span>Doctor-approved plan, follow-up schedule and supportive-care guidance.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide dark" data-title="Doctor Flow" style="--accent:#0EA5E9;--accent2:#2DD4BF;--soft:#EAF5FF">
+  <div class="bgGrid"></div><div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Doctor flow</div>
+    <h1 class="reveal d2">CancerQR gives doctors a <span class="accent">structured tumor-board cockpit.</span></h1>
+    <div class="panel reveal d3">
+      <div class="panelHead"><b>Doctor / tumor-board workflow</b><span>Clinical operations</span></div>
+      <div class="viz">
+        <svg viewBox="0 0 390 270">
+          <defs><linearGradient id="docFlow" x1="0" x2="1"><stop offset="0" stop-color="#38BDF8"/><stop offset=".55" stop-color="#2DD4BF"/><stop offset="1" stop-color="#FDE68A"/></linearGradient></defs>
+          <rect x="28" y="32" width="334" height="190" rx="30" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.12)"/>
+          <path class="draw" d="M62 136 H128 C154 136 154 82 194 82 C234 82 234 136 260 136 H328" fill="none" stroke="url(#docFlow)" stroke-width="6" stroke-linecap="round"/>
+          <g font-family="Manrope" text-anchor="middle" font-weight="900">
+            <circle cx="62" cy="136" r="27" fill="#0B1A2E" stroke="#38BDF8"/><text x="62" y="143" font-size="18">1</text><text x="62" y="178" fill="#BAE6FD" font-size="8.5">Doctor login</text>
+            <circle cx="150" cy="102" r="27" fill="#0B1A2E" stroke="#2DD4BF"/><text x="150" y="109" font-size="18">2</text><text x="150" y="66" fill="#CCFBF1" font-size="8.5">AI brief</text>
+            <circle cx="238" cy="102" r="27" fill="#0B1A2E" stroke="#FDE68A"/><text x="238" y="109" font-size="18">3</text><text x="238" y="66" fill="#FEF3C7" font-size="8.5">Board lane</text>
+            <circle cx="328" cy="136" r="27" fill="#0B1A2E" stroke="#F0ABFC"/><text x="328" y="143" font-size="18">4</text><text x="328" y="178" fill="#FCE7F3" font-size="8.5">Signoff</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="grid2 reveal d4">
+      <div class="mini"><i>🧠</i><b>AI removes admin burden</b><span>Summaries, missing reports and flags are prepared before review.</span></div>
+      <div class="mini"><i>✅</i><b>Doctor remains final authority</b><span>AI never releases treatment without human approval.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-title="Business Flow" style="--accent:#16A34A;--accent2:#11A99A;--soft:#ECFDF3">
+  <div class="bgGrid"></div><div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Business flow</div>
+    <h1 class="reveal d2">Doctor adoption converts into <span class="accent">recurring oncology care.</span></h1>
+    <div class="panel reveal d3">
+      <div class="panelHead"><b>Revenue flywheel</b><span>Doctor → patient → continuity</span></div>
+      <div class="viz">
+        <svg viewBox="0 0 390 270">
+          <defs><linearGradient id="biz" x1="0" x2="1"><stop offset="0" stop-color="#16A34A"/><stop offset=".55" stop-color="#11A99A"/><stop offset="1" stop-color="#0B74E5"/></linearGradient></defs>
+          <g fill="none" stroke="url(#biz)" stroke-width="6" stroke-linecap="round">
+            <path class="draw" d="M195 58 C270 58 332 120 332 195 C332 225 306 245 276 245"/>
+            <path class="draw" d="M276 245 C220 266 136 246 88 192 C52 150 62 82 128 62"/>
+            <path class="draw" d="M128 62 C148 54 172 58 195 58"/>
+          </g>
+          <g font-family="Manrope" text-anchor="middle" font-weight="900">
+            <circle cx="195" cy="58" r="34" fill="#fff" stroke="#16A34A"/><text x="195" y="55" font-size="18" fill="#16A34A">10+</text><text x="195" y="73" font-size="8" fill="#617184">oncologists</text>
+            <circle cx="332" cy="195" r="34" fill="#fff" stroke="#11A99A"/><text x="332" y="191" font-size="18" fill="#11A99A">100</text><text x="332" y="209" font-size="8" fill="#617184">new/mo/doctor</text>
+            <circle cx="88" cy="192" r="34" fill="#fff" stroke="#0B74E5"/><text x="88" y="189" font-size="17" fill="#0B74E5">6–9</text><text x="88" y="207" font-size="8" fill="#617184">months care</text>
+            <circle cx="195" cy="157" r="42" fill="#F0FDFA" stroke="#16A34A"/><text x="195" y="152" font-size="18" fill="#071827">ARR</text><text x="195" y="173" font-size="9" fill="#617184">recurring engine</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="grid3 reveal d4">
+      <div class="metric"><b>5/day</b><span>patients per doctor</span></div>
+      <div class="metric"><b>20 days</b><span>working month</span></div>
+      <div class="metric"><b>100/mo</b><span>new cohort</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-title="Unit Economics" style="--accent:#0F766E;--accent2:#14B8A6;--soft:#F0FDFA">
+  <div class="bgGrid"></div><div class="blob b3"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Unit economics</div>
+    <h1 class="reveal d2">One doctor can generate meaningful <span class="accent">steady-state MRR.</span></h1>
+    <div class="panel reveal d3">
+      <div class="panelHead"><b>Per oncologist cohort math</b><span>Assumption model</span></div>
+      <div class="viz">
+        <svg viewBox="0 0 390 250">
+          <defs><linearGradient id="unit" x1="0" x2="1"><stop offset="0" stop-color="#0F766E"/><stop offset=".55" stop-color="#14B8A6"/><stop offset="1" stop-color="#0B74E5"/></linearGradient></defs>
+          <g font-family="Manrope" font-weight="900" text-anchor="middle">
+            <rect x="18" y="28" width="92" height="64" rx="20" fill="#fff" stroke="#DDE7F1"/><text x="64" y="55" font-size="21">👨‍⚕️</text><text x="64" y="78" font-size="9" fill="#617184">1 oncologist</text>
+            <path class="draw" d="M114 60 H155" stroke="url(#unit)" stroke-width="5" stroke-linecap="round"/>
+            <rect x="160" y="28" width="70" height="64" rx="20" fill="#F0FDFA" stroke="#BDEFE4"/><text x="195" y="55" font-size="21" fill="#0F766E">5</text><text x="195" y="78" font-size="9" fill="#617184">patients/day</text>
+            <path class="draw" d="M234 60 H278" stroke="url(#unit)" stroke-width="5" stroke-linecap="round"/>
+            <rect x="284" y="28" width="88" height="64" rx="20" fill="#EAF5FF" stroke="#CFE6FF"/><text x="328" y="55" font-size="20" fill="#0B74E5">100</text><text x="328" y="78" font-size="9" fill="#617184">new/month</text>
+            <path class="draw" d="M328 96 C328 130 250 126 250 156" stroke="url(#unit)" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <rect x="214" y="158" width="144" height="64" rx="22" fill="#fff" stroke="#DDE7F1"/><text x="286" y="184" font-size="21" fill="#0F766E">600–900</text><text x="286" y="207" font-size="9" fill="#617184">active patients/doctor</text>
+            <path class="draw" d="M196 96 C196 132 128 128 128 156" stroke="url(#unit)" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <rect x="34" y="158" width="144" height="64" rx="22" fill="#fff" stroke="#DDE7F1"/><text x="106" y="184" font-size="18" fill="#0B74E5">₹15L–₹1.35Cr</text><text x="106" y="207" font-size="9" fill="#617184">monthly revenue/doctor</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="grid3 reveal d4">
+      <div class="metric"><b>₹15K–₹1.35L</b><span>LTV / patient</span></div>
+      <div class="metric"><b>₹18Cr–₹162Cr</b><span>ARR at 10 oncologists</span></div>
+      <div class="metric"><b>6–9 mo</b><span>continuity window</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-title="Doctor Network" style="--accent:#6D5DFD;--accent2:#0EA5E9;--soft:#F2EFFF">
+  <div class="bgGrid"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">10+ oncologists on trial</div>
+    <h1 class="reveal d2">Trials create the first <span class="accent">clinical distribution layer.</span></h1>
+    <div class="panel reveal d3">
+      <div class="panelHead"><b>Pilot-to-scale path</b><span>Doctor network</span></div>
+      <div class="viz">
+        <svg viewBox="0 0 390 245">
+          <defs><linearGradient id="network" x1="0" x2="1"><stop offset="0" stop-color="#6D5DFD"/><stop offset=".55" stop-color="#0EA5E9"/><stop offset="1" stop-color="#11A99A"/></linearGradient></defs>
+          <g fill="none" stroke="#DDE7F1" stroke-width="2">
+            <path d="M195 120 L88 70M195 120 L302 70M195 120 L70 174M195 120 L320 174M195 120 L195 40M195 120 L195 208"/>
+          </g>
+          <g font-family="Manrope" text-anchor="middle" font-weight="900">
+            <circle cx="195" cy="120" r="42" fill="#fff" stroke="#6D5DFD"/><text x="195" y="117" font-size="20" fill="#6D5DFD">10+</text><text x="195" y="137" font-size="8.5" fill="#617184">oncologists trial</text>
+            <circle cx="88" cy="70" r="25" fill="#fff" stroke="#0EA5E9"/><text x="88" y="76" font-size="17">👨‍⚕️</text>
+            <circle cx="302" cy="70" r="25" fill="#fff" stroke="#0EA5E9"/><text x="302" y="76" font-size="17">👨‍⚕️</text>
+            <circle cx="70" cy="174" r="25" fill="#fff" stroke="#11A99A"/><text x="70" y="180" font-size="17">👤</text>
+            <circle cx="320" cy="174" r="25" fill="#fff" stroke="#11A99A"/><text x="320" y="180" font-size="17">👤</text>
+            <circle cx="195" cy="40" r="25" fill="#fff" stroke="#6D5DFD"/><text x="195" y="46" font-size="17">🏥</text>
+            <circle cx="195" cy="208" r="25" fill="#fff" stroke="#F59E0B"/><text x="195" y="214" font-size="17">📊</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="grid2 reveal d4">
+      <div class="mini"><i>👨‍⚕️</i><b>Doctors drive cases</b><span>Doctor trust reduces CAC and creates repeat patient cohorts.</span></div>
+      <div class="mini"><i>🏥</i><b>Hospital pilots next</b><span>Successful doctor workflows become hospital-ready deployments.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-title="HospitalOS" style="--accent:#1D4ED8;--accent2:#6D5DFD;--soft:#F2EFFF">
+  <div class="bgGrid"></div><div class="blob b1"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Hospital business flow</div>
+    <h1 class="reveal d2">White-label CancerQR becomes a <span class="accent">hospital oncology layer.</span></h1>
+    <div class="panel reveal d3">
+      <div class="panelHead"><b>HospitalOS deployment</b><span>B2B flow</span></div>
+      <div class="viz">
+        <svg viewBox="0 0 390 240">
+          <defs><linearGradient id="hos" x1="0" x2="1"><stop offset="0" stop-color="#1D4ED8"/><stop offset=".55" stop-color="#0EA5E9"/><stop offset="1" stop-color="#6D5DFD"/></linearGradient></defs>
+          <g font-family="Manrope" text-anchor="middle" font-weight="900">
+            <rect x="30" y="24" width="78" height="38" rx="15" fill="#fff" stroke="#DDE7F1"/><text x="69" y="49" font-size="10" fill="#071827">Hospital</text>
+            <rect x="156" y="24" width="78" height="38" rx="15" fill="#fff" stroke="#DDE7F1"/><text x="195" y="49" font-size="10" fill="#071827">Oncology</text>
+            <rect x="282" y="24" width="78" height="38" rx="15" fill="#fff" stroke="#DDE7F1"/><text x="321" y="49" font-size="10" fill="#071827">Admin</text>
+            <path class="draw" d="M69 66 V92 M195 66 V92 M321 66 V92 M69 92 H321" fill="none" stroke="url(#hos)" stroke-width="4" stroke-linecap="round"/>
+            <rect x="70" y="104" width="250" height="62" rx="24" fill="#071827"/><text x="195" y="130" fill="#fff" font-size="16">CancerQR Core</text><text x="195" y="150" fill="#AFC2D6" font-size="9">AI · Board · Protocols · Registry</text>
+            <path class="draw" d="M195 168 V190" stroke="#1D4ED8" stroke-width="4" stroke-linecap="round"/>
+            <rect x="54" y="194" width="82" height="32" rx="13" fill="#EAF5FF"/><text x="95" y="214" fill="#071827" font-size="8.5">Patients</text>
+            <rect x="154" y="194" width="82" height="32" rx="13" fill="#E8FAF7"/><text x="195" y="214" fill="#071827" font-size="8.5">Doctors</text>
+            <rect x="254" y="194" width="82" height="32" rx="13" fill="#F2EFFF"/><text x="295" y="214" fill="#071827" font-size="8.5">Data</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="grid2 reveal d4">
+      <div class="mini"><i>🏷️</i><b>White-label ready</b><span>Hospitals can launch branded tumor-board workflows.</span></div>
+      <div class="mini"><i>🔌</i><b>No rip-and-replace</b><span>Works as an oncology layer before deep HIS/EMR integration.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-title="Business Model" style="--accent:#111827;--accent2:#475569;--soft:#F1F5F9">
+  <div class="bgGrid"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Business model</div>
+    <h1 class="reveal d2">One workflow opens <span class="accent">four revenue engines.</span></h1>
+    <div class="grid2 reveal d3">
+      <div class="mini"><i>🏥</i><b>Hospital SaaS</b><span>Setup fee + monthly platform license.</span></div>
+      <div class="mini"><i>👥</i><b>Tumor-board fee</b><span>Per case or package review fee.</span></div>
+      <div class="mini"><i>📦</i><b>Supportive care</b><span>Doctor-led integrative care continuity.</span></div>
+      <div class="mini"><i>🧬</i><b>Registry / RWE</b><span>Outcomes, publications and future evidence programs.</span></div>
+    </div>
+    <div class="note reveal d4"><b>Core idea:</b> the same workflow supports B2C patient onboarding, B2D doctor usage, and B2B hospital deployment.</div>
+  </div>
+</section>
+
+<section class="slide" data-title="Moat" style="--accent:#6D5DFD;--accent2:#E84D72;--soft:#F2EFFF">
+  <div class="bgGrid"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Competitive moat</div>
+    <h1 class="reveal d2">Clinical + AI + integrative + <span class="accent">data.</span></h1>
+    <div class="table reveal d3">
+      <div class="row"><div>Capability</div><div>CancerQR</div><div>Hospitals</div><div>Apps</div></div>
+      <div class="row"><div>AI tumor board</div><div class="y">✓</div><div class="p">Partial</div><div class="p">Partial</div></div>
+      <div class="row"><div>Doctor signoff workflow</div><div class="y">✓</div><div class="p">Partial</div><div class="n">—</div></div>
+      <div class="row"><div>Integrative support layer</div><div class="y">✓</div><div class="p">Limited</div><div class="p">Partial</div></div>
+      <div class="row"><div>AYUSH / ECS pathway</div><div class="y">✓</div><div class="n">—</div><div class="n">—</div></div>
+      <div class="row"><div>Registry + RWE</div><div class="y">✓</div><div class="p">Partial</div><div class="n">—</div></div>
+    </div>
+    <div class="grid2 reveal d4">
+      <div class="mini"><i>🩺</i><b>Clinical moat</b><span>Specialist workflow, tumor-board logic and doctor control.</span></div>
+      <div class="mini"><i>📊</i><b>Data moat</b><span>Longitudinal cases, safety, outcomes and protocol intelligence.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide dark" data-title="Team" style="--accent:#0B74E5;--accent2:#27B3FF;--soft:#EAF5FF">
+  <div class="bgGrid"></div><div class="blob b2"></div><div class="blob b3"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Team + advisory</div>
+    <h1 class="reveal d2">Built across software, oncology, science and <span class="accent">operations.</span></h1>
+    <div class="teamGrid reveal d3">
+      <div class="team"><div class="avatar">VK</div><div><b>Vineet Kaimal</b><span>software · strategy</span></div></div>
+      <div class="team"><div class="avatar">SJ</div><div><b>Sharon Jose</b><span>operations · network</span></div></div>
+      <div class="team"><div class="avatar">MG</div><div><b>Mithun Ghosh</b><span>ecosystem · fundraising</span></div></div>
+      <div class="team"><div class="avatar">FZ</div><div><b>Dr Farhan Zameer</b><span>R&D · science</span></div></div>
+      <div class="team"><div class="avatar">PN</div><div><b>Dr Pradeep Nair</b><span>functional medicine</span></div></div>
+      <div class="team"><div class="avatar">SN</div><div><b>Dr Sanjeev Naik</b><span>clinical strategy</span></div></div>
+    </div>
+    <div class="note reveal d4"><b>Advisory depth:</b> surgical oncology, Ayurveda, functional medicine, clinical governance and protocol review.</div>
+  </div>
+</section>
+
+<section class="slide" data-title="Ask" style="--accent:#16A34A;--accent2:#11A99A;--soft:#ECFDF3">
+  <div class="bgGrid"></div><div class="blob b1"></div>
+  <div class="wrap">
+    <div class="kicker reveal d1">Investment ask</div>
+    <h1 class="reveal d2">Fund India’s <span class="accent">AI-assisted oncology operating layer.</span></h1>
+    <div class="grid3 reveal d3">
+      <div class="metric"><b>₹2.5 Cr</b><span>seed raise</span></div>
+      <div class="metric"><b>₹25 Cr</b><span>valuation target</span></div>
+      <div class="metric"><b>10%</b><span>equity offered</span></div>
+    </div>
+    <div class="grid2 reveal d4">
+      <div class="mini"><i>🤖</i><b>40% Technology</b><span>AI workflow, product, security and integrations.</span></div>
+      <div class="mini"><i>🏥</i><b>30% Clinical</b><span>evidence, validation and hospital pilots.</span></div>
+      <div class="mini"><i>📣</i><b>20% GTM</b><span>doctor onboarding and hospital partnerships.</span></div>
+      <div class="mini"><i>⚖️</i><b>10% IP / compliance</b><span>governance, legal and protocol protection.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide dark" data-title="Close" style="--accent:#0B74E5;--accent2:#27B3FF;--soft:#EAF5FF">
+  <div class="bgGrid"></div><div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div class="logoRow reveal d1">
+      <div class="logo"><div class="logoIn"><svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"/><path d="M14 14h2v2h-2zM18 14h2v6h-6v-2h4zM14 18h2v2h-2z"/></svg></div></div>
+      <div class="word"><b>CancerQR</b><span>Research · Navigate · Heal</span></div>
+    </div>
+    <h1 class="reveal d2">One patient. One board. <span class="accent">One safer journey.</span></h1>
+    <div class="grid3 reveal d3">
+      <div class="metric"><b>Patient flow</b><span>simple entry and clarity</span></div>
+      <div class="metric"><b>Doctor flow</b><span>structured review and signoff</span></div>
+      <div class="metric"><b>Business flow</b><span>recurring oncology cohorts</span></div>
+    </div>
+    <div class="note reveal d4">Launch an AI-assisted multidisciplinary tumor board in weeks — branded by hospitals, powered by CancerQR.</div>
+  </div>
+</section>
+
+</div>
+
+<div id="count"></div>
+<div id="bottom">
+  <button class="nav" id="prevBtn">← Back</button>
+  <button class="nav primary" id="nextBtn">Next →</button>
+</div>
+<div id="menu"><div class="sheet"><div class="grab"></div><h3>Slides</h3><div id="menuItems"></div></div></div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const prog=document.querySelector('#prog i');
+const count=document.getElementById('count');
+const prev=document.getElementById('prevBtn');
+const next=document.getElementById('nextBtn');
+const menu=document.getElementById('menu');
+const menuItems=document.getElementById('menuItems');
+let idx=0;
+
+function applyTheme(){
+  const active=slides[idx], cs=getComputedStyle(active), dark=active.classList.contains('dark');
+  const accent=cs.getPropertyValue('--accent').trim();
+  const accent2=cs.getPropertyValue('--accent2').trim();
+  prog.style.background=`linear-gradient(90deg,${accent},${accent2},#11A99A)`;
+  const top=document.getElementById('top'), bottom=document.getElementById('bottom'), brand=document.getElementById('brand'), menuIcon=document.querySelector('#menuBtn svg');
+  top.style.background=dark?'linear-gradient(180deg,rgba(7,24,39,.96),rgba(7,24,39,.72),rgba(7,24,39,0))':'linear-gradient(180deg,rgba(247,250,252,.96),rgba(247,250,252,.72),rgba(247,250,252,0))';
+  bottom.style.background=dark?'linear-gradient(0deg,rgba(7,24,39,.96),rgba(7,24,39,.72),rgba(7,24,39,0))':'linear-gradient(0deg,rgba(247,250,252,.98),rgba(247,250,252,.72),rgba(247,250,252,0))';
+  brand.style.color=dark?'#fff':'#071827';
+  menuIcon.style.stroke=dark?'#fff':'#071827';
+}
+function renderMenu(){
+  menuItems.innerHTML='';
+  slides.forEach((s,i)=>{
+    const item=document.createElement('div');
+    item.className='mItem'+(i===idx?' on':'');
+    item.innerHTML=`<span class="mi">${String(i+1).padStart(2,'0')}</span><span>${s.dataset.title}</span>`;
+    item.onclick=()=>{go(i);menu.classList.remove('open')};
+    menuItems.appendChild(item);
+  });
+}
+function go(i){
+  idx=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,n)=>s.classList.toggle('active',n===idx));
+  applyTheme();
+  prog.style.width=((idx+1)/slides.length*100)+'%';
+  count.textContent=String(idx+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');
+  prev.disabled=idx===0;
+  next.disabled=idx===slides.length-1;
+  next.textContent=idx===slides.length-1?'Done':'Next →';
+  renderMenu();
+}
+prev.onclick=()=>go(idx-1);
+next.onclick=()=>go(idx+1);
+document.getElementById('menuBtn').onclick=()=>menu.classList.add('open');
+menu.onclick=e=>{if(e.target===menu)menu.classList.remove('open')};
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' ')go(idx+1);if(e.key==='ArrowLeft')go(idx-1);if(e.key==='Escape')menu.classList.remove('open')});
+let sx=null,sy=null;
+document.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+document.addEventListener('touchend',e=>{
+  if(sx===null)return;
+  const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+  if(Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy)*1.7){dx<0?go(idx+1):go(idx-1)}
+  sx=sy=null;
+},{passive:true});
+go(0);
+</script>
+</body>
+</html>
